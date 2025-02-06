@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramassage d'outils pour affûtage</title>
     <style>
-        @font-face {
-            font-family: 'Engravers';
-            src: url('Engravers.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'TT Lakes';
-            src: url('TTLakes.ttf') format('truetype');
-        }
         body {
             font-family: 'TT Lakes', sans-serif;
             text-align: center;
@@ -48,6 +40,24 @@
         .button:hover {
             background-color: #f8d7da;
         }
+        #shortcutButton {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #logoBF {
+            margin-top: 20px;
+            width: 100px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -58,51 +68,75 @@
         <button class="button" onclick="demanderRamassage('Pierre', '0603981363')">Pierre Renaud (Boudon Favre / OSP)</button>
         <button class="button" onclick="demanderRamassage('Jérôme', '0610833549')">Jérôme Vinière (Boudon Favre)</button>
         <button class="button" onclick="demanderRamassage('Alain', '0662777625')">Alain Faucher (OSP)</button>
+        
+        <!-- Logo -->
+        <img id="logoBF" src="https://raw.githubusercontent.com/votre-utilisateur/votre-repository/main/LogoBF.png" alt="LogoBF">
+
     </div>
 
+    <!-- Bouton pour créer un raccourci -->
+    <button id="shortcutButton" onclick="addShortcut()">Ajouter à l'écran d'accueil</button>
+
     <script>
+        // Fonction pour afficher le logo
+        function showLogo() {
+            let logoElement = document.getElementById('logoBF');
+            logoElement.style.display = 'block';
+        }
+
+        // Fonction pour vérifier si la PWA peut être installée
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            document.getElementById('shortcutButton').style.display = 'none'; // Si la PWA est déjà installée, ne pas afficher le bouton
+        } else {
+            document.getElementById('shortcutButton').style.display = 'block'; // Sinon, afficher le bouton
+        }
+
+        // Fonction pour ajouter un raccourci à l'écran d'accueil
+        function addShortcut() {
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                alert("Le raccourci est déjà installé.");
+            } else {
+                alert("Pour ajouter à l'écran d'accueil, utilisez l'option 'Ajouter à l'écran d'accueil' du navigateur.");
+            }
+        }
+
+        // Fonction pour demander le ramassage
         function demanderRamassage(prenom, numero) {
+            let entreprise = localStorage.getItem('entreprise');
+            let nom = localStorage.getItem('nom');
+            if (!entreprise) {
+                entreprise = prompt("Entrez le nom de votre entreprise :");
+                if (entreprise) {
+                    localStorage.setItem('entreprise', entreprise);
+                } else {
+                    return; // Stop si l'utilisateur annule
+                }
+            }
+            if (!nom) {
+                nom = prompt("Entrez votre nom :");
+                if (nom) {
+                    localStorage.setItem('nom', nom);
+                } else {
+                    return; // Stop si l'utilisateur annule
+                }
+            }
+            let confirmation = confirm(`Ces informations sont-elles exactes ?\nVotre entreprise est : ${entreprise} et vous êtes ${nom}`);
+            if (!confirmation) {
+                localStorage.removeItem('nom');
+                localStorage.removeItem('entreprise');
+                location.href = "#ancre";
+            }
 
-    let entreprise = localStorage.getItem('entreprise');
-    let nom = localStorage.getItem('nom');
-    if (!entreprise) {
-        entreprise = prompt("Entrez le nom de votre entreprise :");
-        if (entreprise) {
-            localStorage.setItem('entreprise', entreprise);
-        } else {
-            return; // Stop si l'utilisateur annule
-        }
-    }
-    if (!nom) {
-        nom = prompt("Entrez votre nom :");
-        if (nom) {
-            localStorage.setItem('nom', nom);
-        } else {
-            return; // Stop si l'utilisateur annule
-        }
-    }
-    let confirmation = confirm(`Ces informations sont-elles exactes ? 
-    
-    Votre entreprise est ${entreprise} et vous êtes ${nom}`);
-    if (confirmation) {
-
-    }else{
-        localStorage.removeItem('nom');
-        localStorage.removeItem('entreprise');
-        alert("Veuillez recommencer pour corriger ces informations");
-        return;
-    }
-                
-    let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
-
+            let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
+            
 Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
 
 Bien cordialement.
 ${nom}`;
-    let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
-    window.location.href = smsUrl;
-}
-
+            let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
+            window.location.href = smsUrl;
+        }
     </script>
+
 </body>
 </html>
