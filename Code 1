@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envoyer un SMS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .sms-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Envoyer un SMS Pré-rempli</h2>
+    <p>Cliquez sur le bouton ci-dessous pour envoyer un SMS.</p>
+
+    <!-- Bouton SMS -->
+    <a class="sms-button" href="sms:0603981365?body=Bonjour,%20j'aimerais%20en%20savoir%20plus.">
+        📩 Envoyer le SMS
+    </a>
+
+</body>
+</html>
