@@ -1,5 +1,3 @@
-<Quel est le problème dans ce code ? 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,11 +32,11 @@
             max-width: 400px;
             margin: auto;
         }
-         #logoBF {
-            width: 100%; /* L'image s'ajuste à 100% de la largeur du conteneur */
-            height: auto; /* Maintient le ratio */
-            margin-top: 50px; /* Espacement */
-         }
+        #logoBF {
+            width: 100%;
+            height: auto;
+            margin-top: 50px;
+        }
         .button {
             display: block;
             width: 100%;
@@ -66,57 +64,45 @@
         <button class="button" onclick="demanderRamassage('Jérôme', '0610833549')">Jérôme Vinière (Boudon Favre)</button>
         <button class="button" onclick="demanderRamassage('Alain', '0662777625')">Alain Faucher (OSP)</button>
    
-        <img id="LogoBF" src="https://raw.githubusercontent.com/GroupeBF/Ramassage-outils/main/LogoBF.jpg" alt="LogoBF">
-        
+        <img id="logoBF" src="https://raw.githubusercontent.com/GroupeBF/Ramassage-outils/main/LogoBF.jpg" alt="LogoBF">
     </div>
 
     <script>
-
-        function showLogo() {
-            let logoElement = document.getElementById('LogoBF');
-            logoElement.style.display = 'block';
-        }
-        
         function demanderRamassage(prenom, numero) {
-            
             let entreprise = localStorage.getItem('entreprise');
             let nom = localStorage.getItem('nom');
+            
             if (!entreprise) {
                 entreprise = prompt("Entrez le nom de votre entreprise :");
                 if (entreprise) {
                     localStorage.setItem('entreprise', entreprise);
                 } else {
-                    return; // Stop si l'utilisateur annule
+                    return;
                 }
             }
+
             if (!nom) {
                 nom = prompt("Entrez votre nom :");
                 if (nom) {
                     localStorage.setItem('nom', nom);
                 } else {
-                    return; // Stop si l'utilisateur annule
+                    return;
                 }
             }
-            let confirmation = confirm(`Ces informations sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom}`);  ");
-             if (confirmation) {
-                 
-             }else{
-                 
-             localStorage.removeItem('nom');
-                     localStorage.removeItem('entreprise');
-                 alert("Veuillez recommencer pour modifier ces informations");
-                 return;
-              } 
-                
-            let message = Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
-            
-Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
 
-Bien cordialement.
-${nom};
-            let smsUrl = sms:${numero}?body=${encodeURIComponent(message)};
+            let confirmation = confirm(`Ces informations sont-elles exactes ?\n\nVotre entreprise est : ${entreprise}\nVotre nom est : ${nom}`);
+            if (!confirmation) {
+                localStorage.removeItem('nom');
+                localStorage.removeItem('entreprise');
+                alert("Veuillez recommencer pour modifier ces informations");
+                return;
+            }
+
+            let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.\n\nPouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\nBien cordialement.\n${nom}`;
+            let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
             window.location.href = smsUrl;
         }
     </script>
 </body>
 </html>
+
