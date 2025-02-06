@@ -72,8 +72,8 @@
                 }
             }
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
-            Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
-            Bien cordialement.`;
+Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
+Bien cordialement.`;
             let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
             window.location.href = smsUrl;
         }
