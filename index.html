@@ -87,7 +87,7 @@
         }
     }
     let confirmation = confirm("Ces informations sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom}");
-    if (confirmation) {
+    if (!confirmation) {
 
     }else{
         localStorage.removeItem('nom');
@@ -96,11 +96,11 @@
     }
                 
     let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
-    
-    Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
 
-    Bien cordialement.
-    ${nom}`;
+Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
+
+Bien cordialement.
+${nom}`;
     let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
     window.location.href = smsUrl;
 }
