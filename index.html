@@ -64,12 +64,11 @@
         function demanderRamassage(prenom, numero) {
 
     let ancre = document.createElement('h1');
-    
+    ancre.id = 'ancre';
 
     let entreprise = localStorage.getItem('entreprise');
     let nom = localStorage.getItem('nom');
     if (!entreprise) {
-        ancre.id = 'ancre';
         entreprise = prompt("Entrez le nom de votre entreprise :");
         if (entreprise) {
             localStorage.setItem('entreprise', entreprise);
@@ -86,12 +85,12 @@
         }
     }
     let confirmation = confirm("Ces informations sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom}");
-    if (!confirmation) {
+    if (confirmation) {
 
     }else{
         localStorage.removeItem('nom');
         localStorage.removeItem('entreprise');
-        location.href = "#ancre"; // Redirige vers l'élément 'ancre'
+        location.href = "#ancre";
     }
                 
     let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
