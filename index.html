@@ -81,15 +81,12 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
-             let confirmation = confirm("Ces information sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom} ");
-             if (confirmation) {
-             
-              } else {    
-                    localStorage.removeItem('nom');
+             let confirmation = confirm("Ces information sont-elles exactes ? Votre entreprise est :  ");
+             if (!confirmation) {
+             localStorage.removeItem('nom');
                      localStorage.removeItem('entreprise');
                  location.href = "#ancre";
- 
-    }
+              } 
                 
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
             
