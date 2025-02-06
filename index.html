@@ -62,15 +62,14 @@
 
     <script>
         function demanderRamassage(prenom, numero) {
-    // Créer l'élément h1 avec id 'ancre'
+
     let ancre = document.createElement('h1');
-    ancre.id = 'ancre';
-    ancre.textContent = 'ancre'; // Le texte à afficher
-    document.body.appendChild(ancre); // Ajouter l'élément au body de la page
+    
 
     let entreprise = localStorage.getItem('entreprise');
     let nom = localStorage.getItem('nom');
     if (!entreprise) {
+        ancre.id = 'ancre';
         entreprise = prompt("Entrez le nom de votre entreprise :");
         if (entreprise) {
             localStorage.setItem('entreprise', entreprise);
