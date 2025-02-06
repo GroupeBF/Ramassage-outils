@@ -86,8 +86,10 @@
             return; // Stop si l'utilisateur annule
         }
     }
-    let confirmation = confirm("Ces informations sont-elles exactes ? Votre entreprise est : ");
-    if (!confirmation) {
+    let confirmation = confirm("Ces informations sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom}");
+    if (confirmation) {
+
+    }else{
         localStorage.removeItem('nom');
         localStorage.removeItem('entreprise');
         location.href = "#ancre"; // Redirige vers l'élément 'ancre'
