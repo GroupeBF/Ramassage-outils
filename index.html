@@ -6,11 +6,11 @@
     <title>Envoyer un SMS</title>
     <style>
         body {
-            font-family: EngraversGothicW01-Bold, sans-serif;
+            font-family: "EngraversGothicW01-Bold", sans-serif;
             text-align: center;
             padding: 100px;
         }
-        .sms-button {
+        .sms-button1 {
             display: inline-block;
             background-color: #28a745;
             color: white;
@@ -19,6 +19,15 @@
             font-size: 18px;
             border-radius: 5px;
         }
+        .sms-button2 {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 25px;
+        }
     </style>
 </head>
 <body>
@@ -26,8 +35,13 @@
     <h2>Envoyer un SMS à Pierre</h2>
     <p>Cliquez sur le bouton ci-dessous pour envoyer un SMS.</p>
 
-    <!-- Bouton SMS -->
-    <a class="sms-button" href="sms:0603981365?body=Bonjour,%20j'aimerais%20en%20savoir%20plus.">
+    <!-- Bouton SMS1 -->
+    <a class="sms-button1" href="sms:0603981363?body=Bonjour%20Pierre">
+        📩 Envoyer le SMS
+    </a>
+    
+    <!-- Bouton SMS2 -->
+    <a class="sms-button2" href="sms:0617680629?body=Bonjour%20Sébastien.">
         📩 Envoyer le SMS
     </a>
 
