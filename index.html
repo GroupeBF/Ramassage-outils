@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demande de Ramassage</title>
+    <title>Ramassage d'outils pour affûtage</title>
     <style>
+        @font-face {
+            font-family: 'Engravers';
+            src: url('EngraversGothicW01-Bold.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'TT Lakes';
+            src: url('TTLakes.ttf') format('truetype');
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'TT Lakes', sans-serif;
             text-align: center;
             margin: 20px;
+        }
+        .title {
+            font-family: 'Engravers', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .subtitle {
+            font-family: 'TT Lakes', sans-serif;
+            font-size: 18px;
+            margin-top: 10px;
         }
         .container {
             max-width: 400px;
@@ -20,24 +38,26 @@
             padding: 15px;
             margin: 10px 0;
             font-size: 18px;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            background-color: white;
+            color: black;
+            border: 2px solid rgb(200, 0, 0);
+            font-family: 'TT Lakes', sans-serif;
             border-radius: 5px;
             cursor: pointer;
         }
         .button:hover {
-            background-color: #0056b3;
+            background-color: #f8d7da;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Pour demander un ramassage d'outils, sélectionnez la personne que vous avez l'habitude de voir</h2>
-        <button class="button" onclick="demanderRamassage('Sébastien Philippont', '0617680629')">Sébastien Philippont</button>
-        <button class="button" onclick="demanderRamassage('Pierre Renaud', '0603981363')">Pierre Renaud</button>
-        <button class="button" onclick="demanderRamassage('Jérôme Vinière', '0610833549')">Jérôme Vinière</button>
-        <button class="button" onclick="demanderRamassage('Alain Faucher', '0662777625')">Alain Faucher</button>
+        <h2 class="title">Ramassage d'outils pour affûtage</h2>
+        <h3 class="subtitle">Sélectionner la personne que vous avez l'habitude de voir</h3>
+        <button class="button" onclick="demanderRamassage('Sébastien', '0617680629')">Sébastien Philippont</button>
+        <button class="button" onclick="demanderRamassage('Pierre', '0603981363')">Pierre Renaud</button>
+        <button class="button" onclick="demanderRamassage('Jérôme', '0610833549')">Jérôme Vinière</button>
+        <button class="button" onclick="demanderRamassage('Alain', '0662777625')">Alain Faucher</button>
     </div>
 
     <script>
