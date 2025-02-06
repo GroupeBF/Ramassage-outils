@@ -85,9 +85,11 @@
              if (confirmation) {
              
               } else {    
-                    localStorage.remove('nom');
-                     localStorage.remove('entreprise');
-                 location.href = "#ancre";
+                    localStorage.removeItem('nom');
+                     localStorage.removeItem('entreprise');
+                 setTimeout(function() {
+        location.href = "#depart";
+    }, 100);
     }
                 
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
