@@ -71,6 +71,7 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
+            let id_user = localStorage.getItem('id_user');
             if (!id_user) {
                 id_user = prompt("Entrez votre nom :");
                 if (id_user) {
