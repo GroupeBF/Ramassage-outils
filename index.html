@@ -62,7 +62,7 @@
 
     <script>
         function demanderRamassage(prenom, numero) {
-            <a href="#ancre">ancre</a>
+            <h1 id="ancre">ancre</h1>
             let entreprise = localStorage.getItem('entreprise');
             let nom = localStorage.getItem('nom');
             if (!entreprise) {
@@ -87,7 +87,7 @@
               } else {    
                     localStorage.remove('nom');
                      localStorage.remove('entreprise');
-                 <h2 id="ancre">ancre</h2>
+                 location.href = "#ancre";
     }
                 
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
