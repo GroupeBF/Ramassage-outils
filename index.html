@@ -3,51 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Envoyer un SMS</title>
+    <title>Demande de Ramassage</title>
     <style>
         body {
-            font-family: "EngraversGothicW01-Bold", sans-serif;
+            font-family: Arial, sans-serif;
             text-align: center;
-            padding: 100px;
+            margin: 20px;
         }
-        .sms-button1 {
-            display: inline-block;
-            background-color: #FE1C1C;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
             font-size: 18px;
-            border-radius: 5px;
-        }
-        .sms-button2 {
-            display: inline-block;
-            background-color: #FE1C1C;
+            background-color: #007bff;
             color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 18px;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
         }
-        <div class="flex-container">
-    <span>sms-button1</span>
-    <span>sms-button2</span>
-</div>
+        .button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h2>Pour demander un ramassage d'outils, sélectionnez la personne que vous avez l'habitude de voir</h2>
+        <button class="button" onclick="demanderRamassage('Sébastien Philippont', '0617680629')">Sébastien Philippont</button>
+        <button class="button" onclick="demanderRamassage('Pierre Renaud', '0603981363')">Pierre Renaud</button>
+        <button class="button" onclick="demanderRamassage('Jérôme Vinière', '0610833549')">Jérôme Vinière</button>
+        <button class="button" onclick="demanderRamassage('Alain Faucher', '0662777625')">Alain Faucher</button>
+    </div>
 
-    <h2>Demander un ramassage d'outil</h2>
-    <p>Sélectionner la personne que vous avez l'habitude de voir</p>
-
-    <!-- Bouton SMS1 -->
-    <a class="sms-button1" href="sms:0603981363?body=Bonjour%20Pierre">
-        📩 Envoyer un SMS à Pierre
-    </a>
-    
-    <!-- Bouton SMS2 -->
-    <a class="sms-button2" href="sms:0617680629?body=Bonjour%20Sébastien.">
-        📩 Envoyer un SMS à Sébastien
-    </a>
-
+    <script>
+        function demanderRamassage(prenom, numero) {
+            let entreprise = localStorage.getItem('entreprise');
+            if (!entreprise) {
+                entreprise = prompt("Entrez le nom de votre entreprise :");
+                if (entreprise) {
+                    localStorage.setItem('entreprise', entreprise);
+                } else {
+                    return; // Stop si l'utilisateur annule
+                }
+            }
+            let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}. Pouvez-vous me tenir au courant de votre passage ?`;
+            let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
+            window.location.href = smsUrl;
+        }
+    </script>
 </body>
 </html>
