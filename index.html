@@ -71,11 +71,20 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
+            if (!id_user) {
+                id_user = prompt("Entrez votre nom :");
+                if (id_user) {
+                    localStorage.setItem('id_user', id_user);
+                } else {
+                    return; // Stop si l'utilisateur annule
+                }
+            }
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
             
 Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
 
-Bien cordialement.`;
+Bien cordialement.
+${id_user}`;
             let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
             window.location.href = smsUrl;
         }
