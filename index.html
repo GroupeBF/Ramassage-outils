@@ -29,6 +29,7 @@
             margin-top: 10px;
         }
         .container {
+            font-family: 'TT Lakes', sans-serif;
             max-width: 400px;
             margin: auto;
         }
@@ -63,9 +64,6 @@
     <script>
         function demanderRamassage(prenom, numero) {
 
-    let ancre = document.createElement('h1');
-    ancre.id = 'ancre';
-
     let entreprise = localStorage.getItem('entreprise');
     let nom = localStorage.getItem('nom');
     if (!entreprise) {
@@ -84,13 +82,15 @@
             return; // Stop si l'utilisateur annule
         }
     }
-    let confirmation = confirm(`Ces informations sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom}`);
+    let confirmation = confirm(`Ces informations sont-elles exactes ? 
+    
+    Votre entreprise est ${entreprise} et vous êtes ${nom}`);
     if (confirmation) {
 
     }else{
         localStorage.removeItem('nom');
         localStorage.removeItem('entreprise');
-        location.href = "#ancre";
+        return;
     }
                 
     let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
