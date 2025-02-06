@@ -62,41 +62,47 @@
 
     <script>
         function demanderRamassage(prenom, numero) {
-            <h1 id="ancre">ancre</h1>
-            let entreprise = localStorage.getItem('entreprise');
-            let nom = localStorage.getItem('nom');
-            if (!entreprise) {
-                entreprise = prompt("Entrez le nom de votre entreprise :");
-                if (entreprise) {
-                    localStorage.setItem('entreprise', entreprise);
-                } else {
-                    return; // Stop si l'utilisateur annule
-                }
-            }
-            if (!nom) {
-                nom = prompt("Entrez votre nom :");
-                if (nom) {
-                    localStorage.setItem('nom', nom);
-                } else {
-                    return; // Stop si l'utilisateur annule
-                }
-            }
-             let confirmation = confirm("Ces information sont-elles exactes ? Votre entreprise est :  ");
-             if (!confirmation) {
-             localStorage.removeItem('nom');
-                     localStorage.removeItem('entreprise');
-                 location.href = "#ancre";
-              } 
-                
-            let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
-            
-Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
+    // Créer l'élément h1 avec id 'ancre'
+    let ancre = document.createElement('h1');
+    ancre.id = 'ancre';
+    ancre.textContent = 'ancre'; // Le texte à afficher
+    document.body.appendChild(ancre); // Ajouter l'élément au body de la page
 
-Bien cordialement.
-${nom}`;
-            let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
-            window.location.href = smsUrl;
+    let entreprise = localStorage.getItem('entreprise');
+    let nom = localStorage.getItem('nom');
+    if (!entreprise) {
+        entreprise = prompt("Entrez le nom de votre entreprise :");
+        if (entreprise) {
+            localStorage.setItem('entreprise', entreprise);
+        } else {
+            return; // Stop si l'utilisateur annule
         }
+    }
+    if (!nom) {
+        nom = prompt("Entrez votre nom :");
+        if (nom) {
+            localStorage.setItem('nom', nom);
+        } else {
+            return; // Stop si l'utilisateur annule
+        }
+    }
+    let confirmation = confirm("Ces informations sont-elles exactes ? Votre entreprise est : ");
+    if (!confirmation) {
+        localStorage.removeItem('nom');
+        localStorage.removeItem('entreprise');
+        location.href = "#ancre"; // Redirige vers l'élément 'ancre'
+    }
+                
+    let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
+    
+    Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
+
+    Bien cordialement.
+    ${nom}`;
+    let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
+    window.location.href = smsUrl;
+}
+
     </script>
 </body>
 </html>
