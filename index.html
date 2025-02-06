@@ -63,6 +63,7 @@
     <script>
         function demanderRamassage(prenom, numero) {
             let entreprise = localStorage.getItem('entreprise');
+            let nom = localStorage.getItem('nom');
             if (!entreprise) {
                 entreprise = prompt("Entrez le nom de votre entreprise :");
                 if (entreprise) {
@@ -71,11 +72,20 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
+            if (!nom) {
+                nom = prompt("Entrez votre nom :");
+                if (nom) {
+                    localStorage.setItem('nom', nom);
+                } else {
+                    return; // Stop si l'utilisateur annule
+                }
+            }
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
             
 Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
 
-Bien cordialement.`;
+Bien cordialement.
+${nom}`;
             let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
             window.location.href = smsUrl;
         }
