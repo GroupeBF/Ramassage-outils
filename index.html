@@ -62,6 +62,7 @@
 
     <script>
         function demanderRamassage(prenom, numero) {
+            <a href="#ancre">ancre</a>
             let entreprise = localStorage.getItem('entreprise');
             let nom = localStorage.getItem('nom');
             if (!entreprise) {
@@ -80,11 +81,13 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
-             let confirmation = confirm("Ces information sont-elles exactes ? ");
+             let confirmation = confirm("Ces information sont-elles exactes ? Votre entreprise est : ${entreprise} et vous êtes ${nom} ");
              if (confirmation) {
              
               } else {    
-                    return; 
+                    localStorage.remove('nom');
+                     localStorage.remove('entreprise');
+                 <h2 id="ancre">ancre</h2>
     }
                 
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
