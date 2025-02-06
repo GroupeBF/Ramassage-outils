@@ -80,9 +80,12 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
-            prompt("Veuillez confirmez les info suivantes :
-            - Votre entreprise est: ${entreprise}
-            - Vous êtes ${nom}");
+             let confirmation = confirm("Ces information sont-elles exactes ? ");
+             if (confirmation) {
+             
+              } else {    
+                    return; 
+    }
                 
             let message = `Bonjour ${prenom}, nous aurions besoin d'un ramassage d'outils chez ${entreprise}.
             
