@@ -71,11 +71,11 @@
                     return; // Stop si l'utilisateur annule
                 }
             }
-            let id_user = localStorage.getItem('id_user');
-            if (!id_user) {
-                id_user = prompt("Entrez votre nom :");
-                if (id_user) {
-                    localStorage.setItem('id_user', id_user);
+            let iduser = localStorage.getItem('iduser');
+            if (!iduser) {
+                iduser = prompt("Entrez votre nom :");
+                if (iduser) {
+                    localStorage.setItem('iduser', iduser);
                 } else {
                     return; // Stop si l'utilisateur annule
                 }
@@ -85,7 +85,7 @@
 Pouvez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?  
 
 Bien cordialement.
-${id_user}`;
+${iduser}`;
             let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
             window.location.href = smsUrl;
         }
