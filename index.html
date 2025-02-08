@@ -66,8 +66,14 @@
    
         <img id="logoBF" src="https://raw.githubusercontent.com/GroupeBF/Ramassage-outils/main/LogoBF.jpg" alt="LogoBF">
     </div>
+        <button class="button" onclick="modifinfoperso()">Modifier vos informations personnelles</button>
 
     <script>
+        function mettreAJourEntreprise() {
+            let entreprise = localStorage.getItem('entreprise');
+            document.getElementById('entreprise-name').textContent = entreprise || "Entreprise non définie";
+        }
+
         function demanderRamassage(prenom, numero) {
             let entreprise = localStorage.getItem('entreprise');
             let nom = localStorage.getItem('nom');
@@ -102,7 +108,23 @@
             let smsUrl = `sms:${numero}?body=${encodeURIComponent(message)}`;
             window.location.href = smsUrl;
         }
+
+        function modifinfoperso(){
+            let entreprise = prompt("Entrez le nom de votre entreprise :");
+            let nom = prompt("Entrez votre nom :");
+
+            if (entreprise && nom) {
+                localStorage.setItem('entreprise', entreprise);
+                localStorage.setItem('nom', nom);
+                alert("Vos informations ont été mises à jour.");
+            } else {
+                alert("Veuillez entrer des informations valides.");
+            }
+            mettreAJourEntreprise(); // Pour mettre à jour le texte du bouton
+        }
+
+        // Mettre à jour l'affichage dès le chargement de la page
+        mettreAJourEntreprise();
     </script>
 </body>
 </html>
-
