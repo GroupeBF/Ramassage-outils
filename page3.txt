@@ -1,1 +1,10 @@
-fff
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page n°3</title>
+</head>
+<body>
+    <h2>Page n°3</h2>
+</body>
+</html>
