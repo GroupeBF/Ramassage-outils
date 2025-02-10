@@ -66,12 +66,12 @@
             width: 100%;
             height: 100%;
             background: rgba(200, 0, 0, 0.2);
-            animation: pulse 1.5s infinite ease-in-out;
+            animation: bounce 0.5s infinite alternate;
         }
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-            }
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
         
         #logoBF {
             width: 100%;
