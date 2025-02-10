@@ -20,7 +20,7 @@
         }
         .title {
             font-family: 'Engravers', sans-serif;
-            font-size: 28px;
+            font-size: 38px;
             font-weight: bold;
         }
         .label {
@@ -68,7 +68,7 @@
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
-            document.getElementById('sendButton').innerText = `Générer un SMS qui demandera à ${contact} de passer ramasser vos outils dès qu'il le pourra`;
+            document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
         });
         function sendSMS() {
             let entreprise = document.getElementById('entreprise').value;
