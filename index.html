@@ -16,30 +16,42 @@
         body {
             font-family: 'TT Lakes', sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f9f9f9;
         }
         .title {
             font-family: 'Engravers', sans-serif;
-            font-size: 50px;
+            font-size: 24px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
         .container {
+            width: 90vw;
             max-width: 400px;
             margin: auto;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .button {
             display: block;
             width: 100%;
             padding: 15px;
             margin: 10px 0;
-            font-size: 18px;
+            font-size: 16px;
             background-color: white;
             color: black;
             border: 2px solid #f8d7da;
             font-family: 'TT Lakes', sans-serif;
             border-radius: 5px;
             cursor: pointer;
+            text-decoration: none;
         }
         .button:hover {
             background-color: #f8d7da;
@@ -67,9 +79,9 @@
             }
         }
         #logoBF {
-            width: 100%;
+            width: 80%;
             height: auto;
-            margin-top: 50px;
+            margin-top: 20px;
         }
     </style>
 </head>
