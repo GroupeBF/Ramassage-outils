@@ -2,21 +2,87 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vos informations</title>
+    <style>
+        @font-face {
+            font-family: 'Engravers';
+            src: url('Engravers.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'TT Lakes';
+            src: url('TTLakes.ttf') format('truetype');
+        }
+        body {
+            font-family: 'TT Lakes', sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 90%;
+            margin: auto;
+        }
+        .title {
+            font-family: 'Engravers', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .label {
+            font-family: 'Engravers', sans-serif;
+            font-size: 18px;
+            display: block;
+            margin-top: 15px;
+        }
+        .input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-family: 'TT Lakes', sans-serif;
+            border: 2px solid rgb(200, 0, 0);
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background-color: white;
+            color: black;
+            border: 2px solid rgb(200, 0, 0);
+            font-family: 'TT Lakes', sans-serif;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #f8d7da;
+        }
+    </style>
 </head>
 <body>
-    <h2>Vos informations</h2>
-    <p>Le nom de votre entreprise :</p>
-    <input type="text" id="entreprise">
-    <p>Votre prénom et nom :</p>
-    <input type="text" id="nom">
-    <button onclick="sendSMS()">Envoyer la demande</button>
+    <div class="container">
+        <h2 class="title">Vos informations</h2>
+        <label class="label" for="entreprise">Nom de votre entreprise :</label>
+        <input type="text" id="entreprise" class="input">
+        <label class="label" for="nom">Votre prénom et nom :</label>
+        <input type="text" id="nom" class="input">
+        <button class="button" onclick="sendSMS()">Envoyer la demande</button>
+    </div>
     <script>
         function sendSMS() {
             let entreprise = document.getElementById('entreprise').value;
             let nom = document.getElementById('nom').value;
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
+            
+            if (!entreprise || !nom) {
+                alert("Veuillez remplir tous les champs.");
+                return;
+            }
+            
             let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.\n\nPourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\nBien cordialement\n${nom}`;
             window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
         }
