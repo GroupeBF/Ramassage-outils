@@ -1,39 +1,81 @@
-async function chargerNouveautes() {
-  const sheetId = "1_84sDZMYdBImYk5pAG6HKb2pp5wqgpEUoHH9pJI727s"; // Remplace par ton ID
-  const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dernières Nouveautés</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .nouveaute {
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .nouveaute img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .nouveaute p {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
 
-  try {
-    const response = await fetch(url);
-    const text = await response.text();
-    
-    console.log("Données brutes :", text); // 🔍 Vérifie ce qui est récupéré
+  <h1>Nos Dernières Nouveautés</h1>
+  <div class="container" id="nouveautes"></div>
 
-    const jsonData = JSON.parse(text.substring(47, text.length - 2)); // Nettoyage du JSON spécial Google
-    console.log("Données JSON :", jsonData); // 🔍 Affichage des données nettoyées
+  <script>
+    async function chargerNouveautes() {
+      const sheetId = "1A2B3C4D5E6F7G8H9I"; // Remplace par ton ID Google Sheet
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
 
-    const rows = jsonData.table.rows;
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        
+        // Nettoyage des données (Google Sheets renvoie un format JSON spécial)
+        const jsonData = JSON.parse(text.substring(47, text.length - 2));
+        const rows = jsonData.table.rows;
 
-    const container = document.getElementById("nouveautes");
-    container.innerHTML = ""; 
+        const container = document.getElementById("nouveautes");
+        container.innerHTML = ""; // Effacer les anciennes données
 
-    rows.forEach(row => {
-      if (row.c[0] && row.c[1]) { // Vérifie que les colonnes ne sont pas vides
-        const imageUrl = row.c[0].v; 
-        const description = row.c[1].v;
+        rows.forEach(row => {
+          const imageUrl = row.c[0].v; // Colonne A (Image)
+          const description = row.c[1].v; // Colonne B (Description)
 
-        const div = document.createElement("div");
-        div.className = "nouveaute";
-        div.innerHTML = `
-          <img src="${imageUrl}" alt="Nouveauté" style="width:100%">
-          <p>${description}</p>
-        `;
-        container.appendChild(div);
+          const div = document.createElement("div");
+          div.className = "nouveaute";
+          div.innerHTML = `
+            <img src="${imageUrl}" alt="Nouveauté">
+            <p>${description}</p>
+          `;
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Erreur lors du chargement des nouveautés :", error);
       }
-    });
+    }
 
-  } catch (error) {
-    console.error("Erreur lors du chargement des nouveautés :", error);
-  }
-}
+    // Charger les nouveautés au démarrage
+    chargerNouveautes();
+  </script>
 
-chargerNouveautes();
+</body>
+</html>
