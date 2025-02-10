@@ -17,45 +17,37 @@
             font-family: 'TT Lakes', sans-serif;
             text-align: center;
             margin: 20px;
-            background-color: #f9f9f9;
-        }
-        .container {
-            max-width: 90%;
-            margin: auto;
         }
         .title {
             font-family: 'Engravers', sans-serif;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            margin-bottom: 20px;
         }
         .label {
             font-family: 'Engravers', sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             display: block;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .input {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
+            width: 90%;
+            padding: 10px;
+            font-size: 18px;
             font-family: 'TT Lakes', sans-serif;
-            border: 2px solid rgb(200, 0, 0);
-            border-radius: 5px;
-            margin-top: 5px;
+            margin-top: 10px;
         }
         .button {
             display: block;
-            width: 100%;
+            width: 90%;
             padding: 15px;
+            margin: 20px auto;
             font-size: 18px;
             background-color: white;
             color: black;
-            border: 2px solid rgb(200, 0, 0);
+            border: 2px solid #f8d7da;
             font-family: 'TT Lakes', sans-serif;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
         }
         .button:hover {
             background-color: #f8d7da;
@@ -63,27 +55,34 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="title">Vos informations</h2>
-        <label class="label" for="entreprise">Nom de votre entreprise :</label>
-        <input type="text" id="entreprise" class="input">
-        <label class="label" for="nom">Votre prénom et nom :</label>
-        <input type="text" id="nom" class="input">
-        <button class="button" onclick="sendSMS()">Envoyer la demande</button>
-    </div>
+    <h2 class="title">Vos informations</h2>
+    <label class="label" for="entreprise">Le nom de votre entreprise :</label>
+    <input type="text" id="entreprise" class="input">
+    <label class="label" for="nom">Votre prénom et nom :</label>
+    <input type="text" id="nom" class="input">
+    <button id="sendButton" class="button" onclick="sendSMS()"></button>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let entreprise = localStorage.getItem('entreprise') || "";
+            let nom = localStorage.getItem('nom') || "";
+            let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
+            document.getElementById('entreprise').value = entreprise;
+            document.getElementById('nom').value = nom;
+            document.getElementById('sendButton').innerText = `Générer un SMS qui demandera à ${contact} de passer ramasser vos outils dès qu'il le pourra`;
+        });
         function sendSMS() {
             let entreprise = document.getElementById('entreprise').value;
             let nom = document.getElementById('nom').value;
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
-            
-            if (!entreprise || !nom) {
-                alert("Veuillez remplir tous les champs.");
-                return;
-            }
-            
-            let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.\n\nPourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\nBien cordialement\n${nom}`;
+            localStorage.setItem('entreprise', entreprise);
+            localStorage.setItem('nom', nom);
+            let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.
+
+Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
+
+Bien cordialement
+${nom}`;
             window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
         }
     </script>
