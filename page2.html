@@ -3,63 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demandez un ramassage d’outil</title>
-    <style>
-        @font-face {
-            font-family: 'Engravers';
-            src: url('Engravers.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'TT Lakes';
-            src: url('TTLakes.ttf') format('truetype');
-        }
-        
-        body {
-            font-family: 'TT Lakes', sans-serif;
-            text-align: center;
-            margin: 20;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .title {
-            font-family: 'Engravers', sans-serif;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .button {
-            display: block;
-            width: 90%;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 18px;
-            background-color: white;
-            color: black;
-            border: 2px solid rgb(200, 0, 0);
-            font-family: 'TT Lakes', sans-serif;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #f8d7da;
-        }
-    </style>
+    <title>Demande de ramassage</title>
 </head>
 <body>
     <h2 class="title">Demandez un ramassage d’outil</h2>
     <p>Choisissez la personne que vous avez l’habitude de voir :</p>
-    <a href="page4.html" class="button" onclick="storeContact('Sébastien', '0617680629')">Sébastien Philippon</a>
-    <a href="page4.html" class="button" onclick="storeContact('Pierre', '0603981363')">Pierre Renaud</a>
-    <a href="page4.html" class="button" onclick="storeContact('Jérôme', '0610833549')">Jérôme Vinière</a>
-    <a href="page4.html" class="button" onclick="storeContact('Alain', '0662777625')">Alain Faucher</a>
-    <a href="page4.html" class="button" onclick="storeContact('Secrétariat', '0632231674')">Vous ne connaissez personne</a>
+    <button class="button" onclick="storeContact('Sébastien', '0617680629')">Sébastien Philippon</button>
+    <button class="button" onclick="storeContact('Pierre', '0603981363')">Pierre Renaud</button>
+    <button class="button" onclick="storeContact('Jérôme', '0610833549')">Jérôme Vinière</button>
+    <button class="button" onclick="storeContact('Alain', '0662777625')">Alain Faucher</button>
     <script>
         function storeContact(name, phone) {
             localStorage.setItem('contactName', name);
             localStorage.setItem('contactPhone', phone);
+            window.location.href = "#infos";
         }
     </script>
 </body>
