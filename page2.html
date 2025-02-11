@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demande de ramassage</title>
+    <title>Demandez un ramassage d’outil</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2 class="title">Demandez un ramassage d’outil</h2>
     <p>Choisissez la personne que vous avez l’habitude de voir :</p>
-    <button class="button" onclick="storeContact('Sébastien', '0617680629')">Sébastien Philippon</button>
-    <button class="button" onclick="storeContact('Pierre', '0603981363')">Pierre Renaud</button>
-    <button class="button" onclick="storeContact('Jérôme', '0610833549')">Jérôme Vinière</button>
-    <button class="button" onclick="storeContact('Alain', '0662777625')">Alain Faucher</button>
-    <script>
-        function storeContact(name, phone) {
-            localStorage.setItem('contactName', name);
-            localStorage.setItem('contactPhone', phone);
-            window.location.href = "#infos";
-        }
-    </script>
+    <a href="page4.html" class="button" onclick="storeContact('Sébastien', '0617680629')">Sébastien Philippon</a>
+    <a href="page4.html" class="button" onclick="storeContact('Pierre', '0603981363')">Pierre Renaud</a>
+    <a href="page4.html" class="button" onclick="storeContact('Jérôme', '0610833549')">Jérôme Vinière</a>
+    <a href="page4.html" class="button" onclick="storeContact('Alain', '0662777625')">Alain Faucher</a>
+    <a href="page4.html" class="button" onclick="storeContact('Secrétariat', '0632231674')">Vous ne connaissez personne</a>
+    <script src="script.js"></script>
 </body>
 </html>
