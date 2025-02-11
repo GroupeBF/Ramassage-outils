@@ -146,27 +146,32 @@ ${nom}`;
 
         }
 
-    document.addEventListener("DOMContentLoaded", function () {
-    // Vérifie si l'utilisateur revient en arrière
+document.addEventListener("DOMContentLoaded", function () {
+    // Appliquer l'effet de fondu à l'affichage
+    requestAnimationFrame(() => {
+        document.body.classList.add("fade-in");
+    });
+
+    // Gérer le retour en arrière pour réappliquer la transition au prochain avant
     window.addEventListener("pageshow", function (event) {
-        if (event.persisted) { // "persisted" signifie que la page a été chargée depuis le cache
-            document.body.style.opacity = "1"; // Rendre la page visible immédiatement
+        if (event.persisted) { // Détecte si la page est chargée depuis le cache
+            document.body.classList.remove("fade-out"); // Annule l'effet de sortie
+            requestAnimationFrame(() => {
+                document.body.classList.add("fade-in"); // Réapplique l'effet d'entrée
+            });
         }
     });
 
-    // Ajoute l'effet d'apparition
-    document.body.classList.add("fade-in");
-
-    // Intercepte les clics sur les liens internes pour déclencher l'animation de sortie
+    // Ajoute l'effet de sortie lors d'un clic sur un lien interne
     document.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", function (event) {
             if (this.href.startsWith(window.location.origin) && !this.href.includes("#")) {
-                event.preventDefault(); // Empêche le chargement immédiat
+                event.preventDefault(); // Bloque la navigation immédiate
                 let destination = this.href;
-                document.body.classList.add("fade-out"); // Déclenche l'effet de sortie
+                document.body.classList.add("fade-out"); // Lance l'effet de sortie
                 setTimeout(() => {
-                    window.location.href = destination; // Redirige après l'animation
-                }, 500); // Durée correspondant à la transition CSS
+                    window.location.href = destination; // Change de page après l'animation
+                }, 500); // Attends la durée de la transition CSS
             }
         });
     });
