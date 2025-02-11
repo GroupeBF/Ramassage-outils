@@ -23,6 +23,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
         .title {
             font-family: 'Engravers', sans-serif;
@@ -82,19 +84,19 @@
             localStorage.setItem('contactPhone', phone);
         }
 
-   document.addEventListener("DOMContentLoaded", function () {
-    document.body.classList.add("fade-in"); // Ajoute l'effet de fondu à l'apparition
-
-    // Intercepte tous les liens pour déclencher une animation de sortie
+    document.addEventListener("DOMContentLoaded", function () {
+    document.body.classList.add("fade-in"); // Ajoute l'effet d'apparition
+    
+    // Intercepte tous les liens internes pour animer la transition de sortie
     document.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", function (event) {
-            if (this.href.startsWith(window.location.origin)) {
+            if (this.href.startsWith(window.location.origin) && !this.href.includes("#")) {
                 event.preventDefault(); // Empêche le chargement immédiat de la page
                 let destination = this.href;
                 document.body.classList.add("fade-out"); // Déclenche l'animation de sortie
                 setTimeout(() => {
                     window.location.href = destination; // Charge la nouvelle page après l'animation
-                }, 500); // Attends 0.5s (même durée que l'animation)
+                }, 500); // Attends la fin de l'animation
             }
         });
     });
