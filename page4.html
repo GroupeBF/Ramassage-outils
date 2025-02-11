@@ -83,6 +83,27 @@
         opacity: 1; /* Opacité normale */
     }
 }
+
+        /* Animation d’apparition */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animation de disparition */
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
     </style>
 </head>
 <body>
@@ -122,6 +143,24 @@ ${nom}`;
             }
 
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+    document.body.classList.add("fade-in"); // Ajoute l'effet de fondu à l'apparition
+
+    // Intercepte tous les liens pour déclencher une animation de sortie
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            if (this.href.startsWith(window.location.origin)) {
+                event.preventDefault(); // Empêche le chargement immédiat de la page
+                let destination = this.href;
+                document.body.classList.add("fade-out"); // Déclenche l'animation de sortie
+                setTimeout(() => {
+                    window.location.href = destination; // Charge la nouvelle page après l'animation
+                }, 500); // Attends 0.5s (même durée que l'animation)
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
