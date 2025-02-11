@@ -4,72 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <style>
-        @font-face {
-            font-family: 'Engravers';
-            src: url('Engravers.ttf') format('truetype');
-        }
-        @font-face {
-            font-family: 'TT Lakes';
-            src: url('TTLakes.ttf') format('truetype');
-        }
-        body {
-            font-family: 'TT Lakes', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        .title {
-            font-family: 'Engravers', sans-serif;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .container {
-            max-width: 90%;
-            margin: auto;
-        }
-        .button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            font-size: 20px;
-            background-color: white;
-            color: black;
-            border: 2px solid rgb(200, 0, 0);
-            font-family: 'TT Lakes', sans-serif;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .button:hover {
-            background-color: #f8d7da;
-        }
-        .attention {
-            position: relative;
-            animation: pulsate 1.5s infinite;
-        }
-        @keyframes pulsate {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        #logoBF {
-            width: 80%;
-            height: auto;
-            margin-top: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h2 class="title">Bienvenue</h2>
-        <a href="#demande" class="button">Demandez un ramassage d’outils</a>
-        <a href="#devis" class="button">Faire un devis</a>
-        <a href="https://www.groupebf.fr" class="button attention">Notre site internet</a>
-        <img id="logoBF" src="LogoBF.png" alt="Logo BF">
+        <h2 class="title">Bienvenue !</h2>
+        <a href="page2.html" class="button">Demandez un ramassage d’outils</a>
+        <a href="https://www.groupebf.fr/devis-24h/" class="button">Demander un devis</a>
+        <a href="page3.html" class="button attention">Les nouveautés !</a>
+        <img id="logoBF" src="LogoBFOSP.jpg" alt="Logo BF">
     </div>
 </body>
 </html>
