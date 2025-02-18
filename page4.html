@@ -157,7 +157,7 @@ ${nom}`;
         };
 
         // Envoi des données au backend
-        fetch('https://your-backend-api.com/record-activity', {
+        fetch('http://localhost:5000/record-activity', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(activityData)
