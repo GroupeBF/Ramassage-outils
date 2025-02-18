@@ -148,21 +148,22 @@ ${nom}`;
 
         }
 
- function recordUserActivity(page, details) {
-        const activityData = {
-            page: page,
-            details: details,
-            timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-        };
+function recordUserActivity(page, details) {
+    const activityData = {
+        page: page,
+        details: details,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+    };
 
-        // Envoi des données au backend
-        fetch('http://localhost:5000/record-activity', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(activityData)
-        }).catch(err => console.error('Erreur d’enregistrement de l’activité', err));
-    }
+    console.log("Données envoyées :", activityData); // Ajoute cette ligne pour vérifier ce qui est envoyé
+
+    fetch('http://localhost:5000/record-activity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(activityData)
+    }).catch(err => console.error('Erreur d’enregistrement de l’activité', err));
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     // Appliquer l'effet de fondu à l'affichage
