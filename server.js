@@ -43,6 +43,11 @@ app.post('/record-activity', (req, res) => {
     .catch((err) => res.status(500).send('Erreur d’enregistrement de l’activité'));
 });
 
+// Ajouter une route pour la page d'accueil
+app.get('/', (req, res) => {
+  res.send('Bienvenue sur le serveur Node.js pour l\'enregistrement des activités !');
+});
+
 // Lancer le serveur
 app.listen(PORT, () => {
   console.log(`Serveur en écoute sur http://localhost:${PORT}`);
