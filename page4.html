@@ -128,12 +128,13 @@
     <label class="label" for="nom">Votre prénom et nom :</label>
     <input type="text" id="nom" class="input">
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
+    
     <script>
+        
         document.addEventListener("DOMContentLoaded", function() {
             let entreprise = localStorage.getItem('entreprise') || "";
             let nom = localStorage.getItem('nom') || "";
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
-            document.getElementById('entreprise').addEventListener('input', function() {
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
             
@@ -142,7 +143,7 @@
             }else{
                 document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
             }
-        });
+        }
 
         function sendSMS() {
             let entreprise = document.getElementById('entreprise');
