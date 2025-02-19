@@ -163,10 +163,11 @@ function recordUserActivity(action, entreprise, nom) {
 
     
    document.addEventListener("DOMContentLoaded", function () {
-    let entrepriseElement = document.getElementById('entreprise');
-    let nomElement = document.getElementById('nom');
+     
+    let Entreprise = localStorage.getItem('entreprise') || "[Entreprise inconnue]";
+    let Nom = localStorage.getItem('nom') || "[Nom inconnu]";
     
-    if (entrepriseElement && nomElement) {
+    if (Entreprise && Nom) {
         let entreprise = entrepriseElement.value;
         let nom = nomElement.value;
         let action = `Consulter la page des nouveautés`;
