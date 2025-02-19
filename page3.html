@@ -95,10 +95,7 @@
   <script>
 
     chargerNouveautes();
-    let entreprise = document.getElementById('entreprise').value;
-    let nom = document.getElementById('nom').value;
-    let action = `Consulter la page des nouveautés`;
-    recordUserActivity(action, entreprise, nom);
+
 
     
     async function chargerNouveautes() {
@@ -194,6 +191,10 @@ function recordUserActivity(action, entreprise, nom) {
             }
         });
     });
+    let entreprise = document.getElementById('entreprise').value;
+    let nom = document.getElementById('nom').value;
+    let action = `Consulter la page des nouveautés`;
+    recordUserActivity(action, entreprise, nom);
 });
   </script>
 
