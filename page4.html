@@ -149,10 +149,10 @@
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
             
-            localStorage.setItem('entreprise', entreprise);
-            localStorage.setItem('nom', nom);
             
             if (entreprise.value && nom.value) {
+                localStorage.setItem('entreprise', entreprise);
+                localStorage.setItem('nom', nom);
                 if(contact === "Secrétariat"){
                 let message = `Bonjour, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
 
@@ -162,6 +162,7 @@ Bien cordialement
 ${nom.value}`;
                 window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
                 recordUserActivity(`Ecriture d'un message au ${contact}.`, entreprise.value, nom.value);
+
                 }else{
                 let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
 
@@ -171,6 +172,7 @@ Bien cordialement
 ${nom.value}`;
                 window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
                 recordUserActivity(`Ecriture d'un message à ${contact}.`, entreprise.value, nom.value);
+                    
             }} else {
                 if (!entreprise.value) entreprise.classList.add("error");
                 if (!nom.value) nom.classList.add("error");
