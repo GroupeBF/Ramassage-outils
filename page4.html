@@ -142,13 +142,14 @@ Pourriez-vous me confirmer la réception de ce message et le jour où vous pourr
 Bien cordialement
 ${nom}`;
             window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
+            let action = `Ecriture d'un message à ${contact}.`;
         }else{
             alert("Veuillez renseigner les deux informations");
             }
 
         }
 
-function recordUserActivity(entreprise, nom) {
+function recordUserActivity(action, entreprise, nom) {
     const dateOptions = { 
         weekday: 'long', 
         year: 'numeric', 
@@ -163,6 +164,7 @@ function recordUserActivity(entreprise, nom) {
     const frenchTime = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date());
 
     const activityData = {
+        Action: action,
         Entreprise: entreprise,
         Utilisateur: nom,
         Heure: frenchTime,
