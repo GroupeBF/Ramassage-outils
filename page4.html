@@ -133,8 +133,13 @@
             let entreprise = localStorage.getItem('entreprise') || "";
             let nom = localStorage.getItem('nom') || "";
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
-            document.getElementById('entreprise').value = entreprise;
-            document.getElementById('nom').value = nom;
+            document.getElementById('entreprise').addEventListener('input', function() {
+            localStorage.setItem('entreprise', this.value);
+        });
+
+            document.getElementById('nom').addEventListener('input', function() {
+            localStorage.setItem('nom', this.value);
+        });
             
             if(contact === "Secrétariat"){
             document.getElementById('sendButton').innerText = `Envoyer votre demande à notre ${contact}`;
