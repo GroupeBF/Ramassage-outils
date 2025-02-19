@@ -93,6 +93,12 @@
   <div class="container" id="nouveautes"></div>
 
   <script>
+
+    chargerNouveautes();
+    let action = `Consulter la page des nouveautés`;
+    recordUserActivity(action, entreprise, nom);
+
+    
     async function chargerNouveautes() {
       const url = `https://docs.google.com/spreadsheets/d/1_84sDZMYdBImYk5pAG6HKb2pp5wqgpEUoHH9pJI727s/gviz/tq?tqx=out:json`;
 
@@ -125,7 +131,6 @@
     }
 
     // Charger les nouveautés au démarrage
-    chargerNouveautes();
 
 function recordUserActivity(action, entreprise, nom) {
     const dateOptions = { 
