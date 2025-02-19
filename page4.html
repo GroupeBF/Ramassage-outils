@@ -150,8 +150,8 @@ ${nom}`;
 
 function recordUserActivity(entreprise, nom) {
     const activityData = {
-        Entreprise: entreprise,
-        Utilisateur: nom,
+        entreprise: entreprise,
+        utilisateur: nom,
         timestamp: new Date().toISOString(),
     };
 
