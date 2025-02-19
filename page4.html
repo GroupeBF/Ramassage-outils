@@ -158,7 +158,7 @@ function recordUserActivity(page, details) {
 
     console.log("Données envoyées :", activityData); // Ajoute cette ligne pour vérifier ce qui est envoyé
 
-    fetch('http://localhost:8080', {
+    fetch('http://ramassage-outils-production.up.railway.app', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(activityData)
