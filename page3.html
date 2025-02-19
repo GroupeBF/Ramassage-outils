@@ -168,8 +168,8 @@ function recordUserActivity(action, entreprise, nom) {
     let Nom = localStorage.getItem('nom') || "[Nom inconnu]";
     
     if (Entreprise && Nom) {
-        let entreprise = entrepriseElement.value;
-        let nom = nomElement.value;
+        let entreprise = Entreprise.value;
+        let nom = Nom.value;
         let action = `Consulter la page des nouveautés`;
         recordUserActivity(action, entreprise, nom);
     } else {
