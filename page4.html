@@ -150,8 +150,8 @@
             let nom = document.getElementById('nom');
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
-            localStorage.setItem('entreprise', entreprise);
-            localStorage.setItem('nom', nom);
+            localStorage.setItem('entreprise', entreprise.value);
+            localStorage.setItem('nom', nom.value);
 
             if (entreprise.value && nom.value) {
                 
