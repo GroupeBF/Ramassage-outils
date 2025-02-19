@@ -30,6 +30,9 @@ const Activity = mongoose.model('Activity', activitySchema);
 
 // API pour enregistrer l'activité de l'utilisateur
 app.post('/record-activity', (req, res) => {
+
+  console.log("Requête reçue : ", req.body);
+  
   const { page, details, timestamp, userAgent } = req.body;
 
   const newActivity = new Activity({
@@ -40,8 +43,14 @@ app.post('/record-activity', (req, res) => {
   });
 
   newActivity.save()
-    .then(() => res.status(200).send('Activité enregistrée'))
-    .catch((err) => res.status(500).send('Erreur d’enregistrement de l’activité'));
+    .then(() => {
+            console.log("Activité enregistrée !");
+            res.status(200).send('Activité enregistrée');
+        })
+    .catch((err) => {
+            console.error("Erreur d’enregistrement :", err);
+            res.status(500).send('Erreur d’enregistrement de l’activité');
+        });
 });
 
 // Lancer le serveur
