@@ -132,7 +132,7 @@
             localStorage.setItem('entreprise', entreprise);
             localStorage.setItem('nom', nom);
 
-            recordUserActivity('page4', { entreprise, nom});
+            recordUserActivity(entreprise, nom);
                 
             if(entreprise && nom) {
             let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.
@@ -148,12 +148,12 @@ ${nom}`;
 
         }
 
-function recordUserActivity(page, details) {
+function recordUserActivity(entreprise, nom) {
     const activityData = {
-        page: page,
-        details: details,
+        A ennvoyé une demande,
+        Entreprise: entreprise,
+        Utilisateur: nom,
         timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
     };
 
     console.log("Données envoyées :", activityData); // Ajoute cette ligne pour vérifier ce qui est envoyé
