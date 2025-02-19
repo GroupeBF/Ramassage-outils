@@ -164,8 +164,8 @@ function recordUserActivity(action, entreprise, nom) {
     
    document.addEventListener("DOMContentLoaded", function () {
      
-    let entreprise = localStorage.getItem('entreprise') || "[Entreprise inconnue]";
-    let nom = localStorage.getItem('nom') || "[Nom inconnu]";
+    let entreprise = localStorage.getItem('entreprise') || "Entreprise inconnue";
+    let nom = localStorage.getItem('nom') || "Nom inconnu";
     let action = `Consulter la page des nouveautés`;
     recordUserActivity(action, entreprise, nom);
      
