@@ -11,10 +11,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Récupérer l'URL de MongoDB depuis les variables d'environnement
-const mongoURI = process.env.MONGODB_URI;  // Remplace par le nom de ta variable d'environnement sur Railway
+const mongoURI = process.env.MONGODB_URI;  // Utilise la variable d'environnement sur Railway
 
 // Connexion à MongoDB via Railway
-mongoose.connect(mongoURI, { useCreateIndex: true, useFindAndModify: false })
+mongoose.connect(mongoURI)
   .then(() => console.log('Base de données connectée'))
   .catch((err) => console.log('Erreur de connexion à MongoDB', err));
 
