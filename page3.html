@@ -164,17 +164,10 @@ function recordUserActivity(action, entreprise, nom) {
     
    document.addEventListener("DOMContentLoaded", function () {
      
-    let Entreprise = localStorage.getItem('entreprise') || "[Entreprise inconnue]";
-    let Nom = localStorage.getItem('nom') || "[Nom inconnu]";
-    
-    if (Entreprise && Nom) {
-        let entreprise = Entreprise.value;
-        let nom = Nom.value;
-        let action = `Consulter la page des nouveautés`;
-        recordUserActivity(action, entreprise, nom);
-    } else {
-        console.error("Les éléments 'entreprise' ou 'nom' sont introuvables.");
-    }
+    let entreprise = localStorage.getItem('entreprise') || "[Entreprise inconnue]";
+    let nom = localStorage.getItem('nom') || "[Nom inconnu]";
+    let action = `Consulter la page des nouveautés`;
+    recordUserActivity(action, entreprise, nom);
      
     requestAnimationFrame(() => {
         document.body.classList.add("fade-in");
