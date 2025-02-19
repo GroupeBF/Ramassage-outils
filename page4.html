@@ -150,9 +150,9 @@ ${nom}`;
 
 function recordUserActivity(entreprise, nom) {
     const activityData = {
-        entreprise: entreprise,
-        utilisateur: nom,
-        timestamp: new Date().toISOString(),
+        Entreprise: entreprise,
+        Utilisateur: nom,
+        Heure: new Date().toISOString(),
     };
 
     console.log("Données envoyées :", activityData); // Ajoute cette ligne pour vérifier ce qui est envoyé
