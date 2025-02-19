@@ -126,7 +126,11 @@
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
-            document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
+            if(contact === "Secrétariat"){
+            document.getElementById('sendButton').innerText = `Envoyer votre demande à notre ${contact}`;
+            }else{
+                document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
+            }
         });
 
         function sendSMS() {
