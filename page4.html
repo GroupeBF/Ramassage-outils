@@ -43,6 +43,7 @@
             font-family: 'TT Lakes', sans-serif;
             margin-top: 10px;
             border: 2px solid black;
+            transition: border-color 0.3s ease-in-out;
         }
         .button {
             display: block;
@@ -142,6 +143,12 @@ ${nom.value}`;
                 window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
                 recordUserActivity(`Ecriture d'un message à ${contact}.`, entreprise.value, nom.value);
             } else {
+                if (!entreprise.value) entreprise.classList.add("error");
+                if (!nom.value) nom.classList.add("error");
+                setTimeout(() => {
+                    entreprise.classList.remove("error");
+                    nom.classList.remove("error");
+                }, 1500);
 
             }
         }
