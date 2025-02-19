@@ -113,6 +113,66 @@ ${nom.value}`;
                 }, 1000);
             }
         }
+function recordUserActivity(action, entreprise, nom) {
+    const dateOptions = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        timeZone: 'Europe/Paris'
+    };
+
+    const frenchTime = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date());
+
+    const activityData = {
+        Action: action,
+        Entreprise: entreprise,
+        Utilisateur: nom,
+        Heure: frenchTime,
+    };
+
+    // Maintenant, tu peux enregistrer activityData où tu en as besoin
+
+    fetch('https://ramassage-outils-production.up.railway.app/record-activity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(activityData)
+    }).catch(err => console.error('Erreur d’enregistrement de l’activité', err));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Appliquer l'effet de fondu à l'affichage
+    requestAnimationFrame(() => {
+        document.body.classList.add("fade-in");
+    });
+
+    // Gérer le retour en arrière pour réappliquer la transition au prochain avant
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) { // Détecte si la page est chargée depuis le cache
+            document.body.classList.remove("fade-out"); // Annule l'effet de sortie
+            requestAnimationFrame(() => {
+                document.body.classList.add("fade-in"); // Réapplique l'effet d'entrée
+            });
+        }
+    });
+
+    // Ajoute l'effet de sortie lors d'un clic sur un lien interne
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            if (this.href.startsWith(window.location.origin) && !this.href.includes("#")) {
+                event.preventDefault(); // Bloque la navigation immédiate
+                let destination = this.href;
+                document.body.classList.add("fade-out"); // Lance l'effet de sortie
+                setTimeout(() => {
+                    window.location.href = destination; // Change de page après l'animation
+                }, 500); // Attends la durée de la transition CSS
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
