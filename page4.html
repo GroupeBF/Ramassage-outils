@@ -149,11 +149,28 @@ ${nom}`;
         }
 
 function recordUserActivity(entreprise, nom) {
+    const dateOptions = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        timeZone: 'Europe/Paris'
+    };
+
+    const frenchTime = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date());
+
     const activityData = {
         Entreprise: entreprise,
         Utilisateur: nom,
-        Heure: new Date().toISOString(),
+        Heure: frenchTime,
     };
+
+    // Maintenant, tu peux enregistrer activityData où tu en as besoin
+}
+
 
     console.log("Données envoyées :", activityData); // Ajoute cette ligne pour vérifier ce qui est envoyé
 
