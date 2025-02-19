@@ -136,6 +136,14 @@
             let phone = localStorage.getItem('contactPhone');
             
             if (entreprise.value && nom.value) {
+                if(contact = "Secrétariat"){
+                let message = `Bonjour, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
+
+Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
+
+Bien cordialement
+${nom.value}`;
+                }else{
                 let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
 
 Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
@@ -144,7 +152,7 @@ Bien cordialement
 ${nom.value}`;
                 window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
                 recordUserActivity(`Ecriture d'un message à ${contact}.`, entreprise.value, nom.value);
-            } else {
+            }} else {
                 if (!entreprise.value) entreprise.classList.add("error");
                 if (!nom.value) nom.classList.add("error");
                 setTimeout(() => {
