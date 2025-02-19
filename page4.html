@@ -130,6 +130,15 @@
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     
     <script>
+
+        document.getElementById('entreprise').addEventListener('blur', function() {
+            localStorage.setItem('entreprise', this.value);
+});
+
+        document.getElementById('nom').addEventListener('blur', function() {
+            localStorage.setItem('nom', this.value);
+});
+
         
         document.addEventListener("DOMContentLoaded", function() {
             let entreprise = localStorage.getItem('entreprise') || "";
@@ -137,9 +146,6 @@
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
-            localStorage.setItem('entreprise', entreprise.value);
-            localStorage.setItem('nom', nom.value);
-
             
             if(contact === "Secrétariat"){
             document.getElementById('sendButton').innerText = `Envoyer votre demande à notre ${contact}`;
