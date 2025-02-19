@@ -106,8 +106,10 @@
 
         
         .error {
-            animation: blink 0.5s ease-in-out 2;
+            animation: blink 0.5s ease-in-out 10;
         }
+
+        
     </style>
 </head>
 <body>
@@ -148,7 +150,7 @@ ${nom.value}`;
                 setTimeout(() => {
                     entreprise.classList.remove("error");
                     nom.classList.remove("error");
-                }, 3000);
+                }, 1500);
 
             }
         }
