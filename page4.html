@@ -142,7 +142,7 @@ Pourriez-vous me confirmer la réception de ce message et le jour où vous pourr
 
 Bien cordialement
 ${nom}`;
-            window.location.href = sms:${phone}?body=${encodeURIComponent(message)};
+            window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
             let action = `Ecriture d'un message à ${contact}.`;
             recordUserActivity(action, entreprise, nom);
         }else{
