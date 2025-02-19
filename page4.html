@@ -135,8 +135,6 @@
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
-            localStorage.setItem("entreprise", entreprise);
-            localStorage.setItem("nom", nom);
             
             if(contact === "Secrétariat"){
             document.getElementById('sendButton').innerText = `Envoyer votre demande à notre ${contact}`;
@@ -150,6 +148,9 @@
             let nom = document.getElementById('nom');
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
+            
+            localStorage.setItem('entreprise', entreprise);
+            localStorage.setItem('nom', nom);
             
             if (entreprise.value && nom.value) {
                 if(contact === "Secrétariat"){
