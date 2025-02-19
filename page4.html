@@ -132,7 +132,7 @@
             localStorage.setItem('entreprise', entreprise);
             localStorage.setItem('nom', nom);
 
-            recordUserActivity({entreprise}, {nom});
+            recordUserActivity(entreprise, nom);
                 
             if(entreprise && nom) {
             let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.
