@@ -62,6 +62,16 @@
         .button:hover {
             background-color: #f8d7da;
         }
+
+        .attention {
+            margin-top:40px;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            color: black; 
+            animation: pulsate 1s ease-in-out infinite;
+}
+
         
         @keyframes blink {
             0%, 100% { border-color: black; }
@@ -118,7 +128,7 @@
     <input type="text" id="entreprise" class="input">
     <label class="label" for="nom">Votre prénom et nom :</label>
     <input type="text" id="nom" class="input">
-    <button id="sendButton" class="button" onclick="sendSMS()"></button>
+    <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let entreprise = localStorage.getItem('entreprise') || "";
