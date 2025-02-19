@@ -107,10 +107,7 @@ ${nom.value}`;
                 window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
                 recordUserActivity(`Ecriture d'un message à ${contact}.`, entreprise.value, nom.value);
             } else {
-                if (!entreprise.value) entreprise.classList.add('error');
-                setTimeout(() => {
-                    entreprise.classList.remove('error');
-                }, 1000);
+
             }
         }
 function recordUserActivity(action, entreprise, nom) {
