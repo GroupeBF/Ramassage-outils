@@ -87,21 +87,25 @@
              recordUserActivity('page2', { contactName: name, contactPhone: phone });
     }
 
-    function recordUserActivity(page, details) {
-        const activityData = {
-            page: page,
-            details: details,
-            timestamp: new Date().toISOString(),
-            userAgent: navigator.userAgent,
-        };
-        
-        // Envoi des données au backend
-        fetch('https://ramassage-outils-production.up.railway.app/record-activity', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(activityData)
-        }).catch(err => console.error('Erreur d’enregistrement de l’activité', err));
-    }
+function recordUserActivity(page, details) {
+    const activityData = {
+        page: page,
+        details: details,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+    };
+
+    console.log("Données envoyées :", activityData); // Vérification avant l'envoi
+
+    fetch('https://ramassage-outils-production.up.railway.app/record-activity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(activityData)
+    })
+    .then(response => response.text())
+    .then(data => console.log("Réponse du serveur :", data)) // Ajout pour voir la réponse
+    .catch(err => console.error('Erreur d’enregistrement de l’activité', err));
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     // Appliquer l'effet de fondu à l'affichage
