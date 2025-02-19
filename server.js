@@ -20,8 +20,8 @@ mongoose.connect(mongoURI)
 
 // Schéma de l'activité utilisateur
 const activitySchema = new mongoose.Schema({
-  Entreprise: Object,
-  Utilisateur: Object,
+  entreprise: Object,
+  utilisateur: Object,
   timestamp: String,
 
 });
