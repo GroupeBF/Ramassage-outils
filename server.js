@@ -40,14 +40,6 @@ app.post('/record-activity', (req, res) => {
     Utilisateur,
     Heure,
      });
-
-  Activity.find().sort({ Heure: -1 }).exec((err, activities) => {
-    if (err) {
-        console.error('Erreur lors de la récupération des données:', err);
-    } else {
-        console.log('Activités récupérées :', activities);
-    }
-});
   
   newActivity.save()
     .then(() => {
