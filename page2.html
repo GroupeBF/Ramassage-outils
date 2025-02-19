@@ -96,7 +96,7 @@
         };
         
         // Envoi des données au backend
-        fetch('http://localhost:8080', {
+        fetch('http://ramassage-outils-production.up.railway.app', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(activityData)
