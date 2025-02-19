@@ -122,7 +122,7 @@
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
-            document.getElementById('sendButton').innerText = Envoyer votre demande à ${contact};
+            document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
         });
         function sendSMS() {
             let entreprise = document.getElementById('entreprise').value;
@@ -136,14 +136,14 @@
                 
             if(entreprise && nom) {
 
-            let message = Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.
+            let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.
 
 Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
 
 Bien cordialement
-${nom};
+${nom}`;
             window.location.href = sms:${phone}?body=${encodeURIComponent(message)};
-            let action = Ecriture d'un message à ${contact}.;
+            let action = `Ecriture d'un message à ${contact}.`;
             recordUserActivity(action, entreprise, nom);
         }else{
             alert("Veuillez renseigner les deux informations");
