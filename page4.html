@@ -42,8 +42,6 @@
             font-size: 18px;
             font-family: 'TT Lakes', sans-serif;
             margin-top: 10px;
-            border: 2px solid black;
-            transition: border-color 0.3s ease-in-out;
         }
         .button {
             display: block;
@@ -62,15 +60,52 @@
         .button:hover {
             background-color: #f8d7da;
         }
-        
-        @keyframes blink {
-            0%, 100% { border-color: black; }
-            50% { border-color: red; }
-        }
-        
-        .error {
-            animation: blink 0.5s ease-in-out 2;
-        }
+
+        .attention{
+    margin-top:40px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    color: black; 
+    animation: pulsate 1s ease-in-out infinite;
+}
+
+/* Animation de pulsation */
+@keyframes pulsate {
+    0% {
+        transform: scale(1); /* Taille normale du texte */
+        opacity: 1; /* Opacité normale */
+    }
+    50% {
+        transform: scale(1.03); /* Agrandir légèrement le texte */
+        opacity: 0.9; /* Légère réduction de l'opacité */
+    }
+    100% {
+        transform: scale(1); /* Retour à la taille normale */
+        opacity: 1; /* Opacité normale */
+    }
+}
+
+        /* Animation d’apparition */
+.fade-in {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animation de disparition */
+.fade-out {
+    opacity: 0;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
     </style>
 </head>
 <body>
@@ -79,7 +114,7 @@
     <input type="text" id="entreprise" class="input">
     <label class="label" for="nom">Votre prénom et nom :</label>
     <input type="text" id="nom" class="input">
-    <button id="sendButton" class="button" onclick="sendSMS()"></button>
+    <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let entreprise = localStorage.getItem('entreprise') || "";
@@ -87,33 +122,95 @@
             let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
-            document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
+            document.getElementById('sendButton').innerText = Envoyer votre demande à ${contact};
         });
-
         function sendSMS() {
-            let entreprise = document.getElementById('entreprise');
-            let nom = document.getElementById('nom');
+            let entreprise = document.getElementById('entreprise').value;
+            let nom = document.getElementById('nom').value;
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
+            localStorage.setItem('entreprise', entreprise);
+            localStorage.setItem('nom', nom);
+
             
-            if (entreprise.value && nom.value) {
-                let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
+                
+            if(entreprise && nom) {
+
+            let message = Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise}.
 
 Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
 
 Bien cordialement
-${nom.value}`;
-                window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
-                recordUserActivity(`Ecriture d'un message à ${contact}.`, entreprise.value, nom.value);
-            } else {
-                if (!entreprise.value) entreprise.classList.add('error');
-                if (!nom.value) nom.classList.add('error');
-                setTimeout(() => {
-                    entreprise.classList.remove('error');
-                    nom.classList.remove('error');
-                }, 1000);
+${nom};
+            window.location.href = sms:${phone}?body=${encodeURIComponent(message)};
+            let action = Ecriture d'un message à ${contact}.;
+            recordUserActivity(action, entreprise, nom);
+        }else{
+            alert("Veuillez renseigner les deux informations");
             }
+
         }
+
+function recordUserActivity(action, entreprise, nom) {
+    const dateOptions = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        timeZone: 'Europe/Paris'
+    };
+
+    const frenchTime = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date());
+
+    const activityData = {
+        Action: action,
+        Entreprise: entreprise,
+        Utilisateur: nom,
+        Heure: frenchTime,
+    };
+
+    // Maintenant, tu peux enregistrer activityData où tu en as besoin
+
+    fetch('https://ramassage-outils-production.up.railway.app/record-activity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(activityData)
+    }).catch(err => console.error('Erreur d’enregistrement de l’activité', err));
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Appliquer l'effet de fondu à l'affichage
+    requestAnimationFrame(() => {
+        document.body.classList.add("fade-in");
+    });
+
+    // Gérer le retour en arrière pour réappliquer la transition au prochain avant
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted) { // Détecte si la page est chargée depuis le cache
+            document.body.classList.remove("fade-out"); // Annule l'effet de sortie
+            requestAnimationFrame(() => {
+                document.body.classList.add("fade-in"); // Réapplique l'effet d'entrée
+            });
+        }
+    });
+
+    // Ajoute l'effet de sortie lors d'un clic sur un lien interne
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            if (this.href.startsWith(window.location.origin) && !this.href.includes("#")) {
+                event.preventDefault(); // Bloque la navigation immédiate
+                let destination = this.href;
+                document.body.classList.add("fade-out"); // Lance l'effet de sortie
+                setTimeout(() => {
+                    window.location.href = destination; // Change de page après l'animation
+                }, 500); // Attends la durée de la transition CSS
+            }
+        });
+    });
+});
     </script>
 </body>
 </html>
