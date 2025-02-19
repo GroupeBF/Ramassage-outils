@@ -20,6 +20,7 @@ mongoose.connect(mongoURI)
 
 // Schéma de l'activité utilisateur
 const activitySchema = new mongoose.Schema({
+  Action: String,
   Entreprise: String,
   Utilisateur: String,
   Heure: String,
@@ -33,9 +34,10 @@ app.post('/record-activity', (req, res) => {
 
   console.log("Requête reçue : ", req.body);
   
-  const { Entreprise, Utilisateur, Heure} = req.body;
+  const {Action, Entreprise, Utilisateur, Heure} = req.body;
 
   const newActivity = new Activity({
+    Action,
     Entreprise,
     Utilisateur,
     Heure,
