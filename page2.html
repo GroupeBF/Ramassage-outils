@@ -56,13 +56,13 @@
         .titlebis::before {
             content: "";
             position: absolute;
-            top: -50px;
-            left: -100px;
-            width: 150px;
-            height: 10px;
+            top: 0;
+            left: -200px;
+            width: 100px;
+            height: 150%;
             background: rgba(200, 0, 0, 0.4);
             transform: skewX(-45deg);
-            animation: slide 2s ease-in-out infinite;
+            animation: slide 1.5s ease-in-out infinite;
     }
         .button {
             display: block;
@@ -105,10 +105,10 @@
 
 @keyframes slide {
     from {
-        left: -150px;
+        left: -200px;
     }
     to {
-        left: 100%;
+        left: 100vw;
     }
 }
 
