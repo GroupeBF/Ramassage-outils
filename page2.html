@@ -62,7 +62,7 @@
             height: 150%;
             background: rgba(150, 150, 150, 0.4);
             transform: skewX(-45deg);
-            animation: slide 1.5s ease-in-out infinite;
+            animation: slide 5s ease-in-out infinite;
     }
         .button {
             display: block;
@@ -93,9 +93,7 @@
 }
 
 /* Animation de disparition */
-.fade-out {
-    opacity: 0;
-}
+.fade-out {opacity: 0;}
 
 @keyframes fadeOut {
     from { opacity: 1; }
@@ -104,12 +102,9 @@
 
 
 @keyframes slide {
-    from {
-        left: -200px;
-    }
-    to {
-        left: 120vw;
-    }
+    0% {left: -200px;}
+    30% {left: 120vw;}
+    100% {left: 120vw;}
 }
 
     </style>
