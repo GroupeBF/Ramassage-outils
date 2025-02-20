@@ -50,9 +50,9 @@
             width:100vw;
         }
 
-        .fond {
-            background-color: rgba(255, 255, 255,0.8);
-            position: relative;
+        .titlebis::before{
+            background: linear-gradient(45deg, blue, cyan);
+            position: absolute;
             animation: slide 1s ease-in-out infinite;
             padding:15px;
         }
@@ -96,11 +96,9 @@
 
 @keyframes slide {
   from {
-    transform: translate(-100%, -100%);
     opacity: 0;
   }
   to {
-    transform: translate(0, 0);
     opacity: 1;
   }
 }
@@ -109,7 +107,7 @@
 </head>
 <body>
     <h2 class="title">Demandez un ramassage d’outils</h2>
-    <h2 class="titlebis fond">Choisissez la personne que vous avez l’habitude de voir :</h2>
+    <h2 class="titlebis">Choisissez la personne que vous avez l’habitude de voir :</h2>
     <a href="page4.html" class="button" onclick="storeContact('Sébastien', '0617680629')">Sébastien Philippon</a>
     <a href="page4.html" class="button" onclick="storeContact('Pierre', '0603981363')">Pierre Renaud</a>
     <a href="page4.html" class="button" onclick="storeContact('Jérôme', '0610833549')">Jérôme Vinière</a>
