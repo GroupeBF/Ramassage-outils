@@ -48,8 +48,9 @@
             position: relative;
             border: 2px solid rgb(150, 150, 150);
             width: 100vw;
-            background: rgba(255, 255, 255, 0.8); /* Fond blanc avec opacité 0.8 */
-            overflow: hidden; /* Cache l'animation qui dépasse */
+            background: rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+            padding:10px;
     }
 
         .titlebis::before {
@@ -57,10 +58,10 @@
             position: absolute;
             top: -50px;
             left: -100px;
-            width: 150px; /* Largeur du parallélogramme */
-            height: 10px; /* Épaisseur de la bande */
-            background: rgba(255, 255, 255, 1); /* Blanc opaque */
-            transform: skewX(-45deg); /* Inclinaison à 45° */
+            width: 150px;
+            height: 10px;
+            background: rgba(200, 0, 0, 0.4);
+            transform: skewX(-45deg);
             animation: slide 2s ease-in-out infinite;
     }
         .button {
