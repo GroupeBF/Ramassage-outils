@@ -186,29 +186,31 @@
             localStorage.setItem('entreprise', entreprise.value);
             localStorage.setItem('nom', nom.value);
 
-            if (entreprise.value && nom.value) {
-                
-                if(contact === "Secrétariat"){
-                let message = `Bonjour, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
+        if (entreprise && nom) {
+        let message = `Bonjour ${contact},\n\nNous aurions besoin d’un ramassage d’outils chez ${entreprise}.\n\n` +
+                      `Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\n` +
+                      `Bien cordialement,\n${nom}`;
 
-Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
-
-Bien cordialement
-${nom.value}`;
-                window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
-                recordUserActivity(`Ecriture d'un message au ${contact}.`, entreprise.value, nom.value);
-
-                }else{
-                let message = `Bonjour ${contact}, nous aurions besoin d’un ramassage d’outils chez ${entreprise.value}.
-
-Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?
-
-Bien cordialement
-${nom.value}`;
-                window.location.href = `sms:${phone}?body=${encodeURIComponent(message)}`;
-                recordUserActivity(`Ecriture d'un message à ${contact}.`, entreprise.value, nom.value);
-                    
-            }} else {
+        // Envoyer une requête POST à l'API de votre serveur Node.js
+        fetch('https://votre-serveur-railway.app/send-email', {  // Remplacez par l'URL de votre serveur
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                subject: `Demande de ramassage d'outils chez ${entreprise}`,
+                text: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("✅ E-mail envoyé avec succès", data);
+            alert("E-mail envoyé avec succès !");
+        })
+        .catch(error => {
+            console.error("❌ Erreur lors de l'envoi de l'e-mail", error);
+            alert("Erreur lors de l'envoi de l'e-mail.");
+        });
+    }
+ else {
                 if (!entreprise.value) entreprise.classList.add("error");
                 if (!nom.value) nom.classList.add("error");
                 setTimeout(() => {
