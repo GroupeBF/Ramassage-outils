@@ -61,25 +61,30 @@ const transporter = nodemailer.createTransport({
 app.post('/send-email', async (req, res) => {
   const { subject, text } = req.body;
 
-  if (!subject || !text) {
+    if (!subject || !text) {
+    console.error('❌ Erreur : Sujet ou texte manquant');
     return res.status(400).json({ error: 'Sujet et contenu requis' });
   }
 
   try {
+    console.log("📨 Tentative d'envoi d'email...");
+    console.log(`✉️ Sujet: ${subject}`);
+    console.log(`📄 Contenu: ${text}`);
+
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: 'lboudon@groupebf.fr',
       subject,
       text
     });
-    console.log("✅ E-mail envoyé !");
+
+    console.log("✅ E-mail envoyé avec succès !");
     res.status(200).json({ message: 'E-mail envoyé avec succès' });
   } catch (error) {
     console.error('❌ Erreur lors de l\'envoi de l\'e-mail:', error);
-    res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail' });
+    res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail', details: error.message });
   }
 });
-
 // Lancer le serveur
 app.listen(PORT, () => {
   console.log(`🚀 Serveur en écoute sur http://localhost:${PORT}`);
