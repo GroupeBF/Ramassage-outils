@@ -207,11 +207,13 @@
         .then(response => response.json())
         .then(data => {
             console.log("✅ E-mail envoyé avec succès", data);
-            alert("E-mail envoyé avec succès !");
+            sendButton.innerText = "✅ Message envoyé ! ✅";
+            sendButton.disabled = true;
         })
         .catch(error => {
             console.error("❌ Erreur lors de l'envoi de l'e-mail", error);
-            alert("Erreur lors de l'envoi de l'e-mail.");
+            sendButton.innerText = "❌ Erreur lors de l'envoi de l'e-mail ❌";
+            sendButton.disabled = false;
         });
     }
  else {
