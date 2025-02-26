@@ -84,6 +84,11 @@
             background-color: #f8d7da;
         }
 
+        .no-hover:hover {
+            background-color: inherit !important; /* Empêche tout changement */
+            cursor: default;
+        }
+        
         .attention {
             margin-top:40px;
             display: inline-block;
@@ -93,7 +98,7 @@
             font-weight: bold;
             color: black; 
             animation: pulsate 1s ease-in-out infinite;
-}
+        }
         .validation {
             margin-top:40px;
             display: inline-block;
@@ -204,9 +209,9 @@
         sendButton.innerText = "Envoi en cours...";
         sendButton.disabled = true;
         sendButton.classList.remove("attention");
-        sendButton.classList.add("validation");          
+        sendButton.classList.add("validation"); 
+        sendButton.classList.add("no-hover"); 
             
-        // Envoyer une requête POST à l'API de votre serveur Node.js
         fetch('https://ramassage-outils-production.up.railway.app/send-email', {  // Remplacez par l'URL de votre serveur
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
