@@ -194,8 +194,8 @@
         });
 
         function sendSMS() {
-            let entreprise = document.getElementById('entreprise');
-            let nom = document.getElementById('nom');
+            let entreprise = document.getElementById('entreprise').value;
+            let nom = document.getElementById('nom').value;
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
             localStorage.setItem('entreprise', entreprise.value);
@@ -224,12 +224,12 @@
         .then(response => response.json())
         .then(data => {
             console.log("✅ E-mail envoyé avec succès", data);
-            sendButton.innerText = "✅ Message envoyé ! ✅";
+            sendButton.innerText = "✅   Message envoyé !   ✅";
             sendButton.disabled = true;
         })
         .catch(error => {
             console.error("❌ Erreur lors de l'envoi de l'e-mail", error);
-            sendButton.innerText = "❌ Erreur lors de l'envoi de l'e-mail ❌";
+            sendButton.innerText = "❌  Erreur lors de l'envoi de l'e-mail  ❌";
             sendButton.disabled = false;
         });
     }
