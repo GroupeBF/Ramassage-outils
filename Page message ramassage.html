@@ -191,6 +191,9 @@
                       `Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\n` +
                       `Bien cordialement,\n${nom}`;
 
+        sendButton.innerText = "Envoi en cours...";
+        sendButton.disabled = true;
+            
         // Envoyer une requête POST à l'API de votre serveur Node.js
         fetch('https://ramassage-outils-production.up.railway.app/send-email', {  // Remplacez par l'URL de votre serveur
             method: 'POST',
@@ -199,6 +202,7 @@
                 subject: `Demande de ramassage d'outils chez ${entreprise}`,
                 text: message
             })
+
         })
         .then(response => response.json())
         .then(data => {
