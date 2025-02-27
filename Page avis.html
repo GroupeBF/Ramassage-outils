@@ -193,8 +193,8 @@
       let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
       const formData = new FormData();
-      formData.append("subject", subject);
-      formData.append("text", message);
+formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
+formData.append("text", message || "Aucun commentaire fourni.");
       if (file) {
         formData.append("file", file);
       }
