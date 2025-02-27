@@ -64,32 +64,44 @@ const transporter = nodemailer.createTransport({
 
 
 // API pour envoyer un e-mail
-app.post('/send-email', upload.single('photo'), async(req, res) => {
-  const { subject, text } = req.body;
+app.post('/send-email', upload, async (req, res) => {
+    try {
+        console.log("Données reçues :", req.body);
+        console.log("Fichier reçu :", req.file);
 
-    if (!subject || !text) {
-    console.error('❌ Erreur : Sujet ou texte manquant');
-    return res.status(400).json({ error: 'Sujet et contenu requis' });
-  }
+        if (!req.body.subject || !req.body.text) {
+            return res.status(400).json({ error: 'Sujet et contenu requis' });
+        }
 
-  try {
-    console.log("📨 Tentative d'envoi d'email...");
-    console.log(`✉️ Sujet: ${subject}`);
-    console.log(`📄 Contenu: ${text}`);
+        // 📌 Configuration de l'email
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'tonemail@gmail.com', // Remplace par ton email
+                pass: 'tonmotdepasse' // Remplace par ton mot de passe (ou utilise un token d'application)
+            }
+        });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: 'lboudon@groupebf.fr',
-      subject,
-      text
-    });
+        let mailOptions = {
+            from: 'tonemail@gmail.com',
+            to: 'destinataire@gmail.com', // Remplace par le bon destinataire
+            subject: req.body.subject,
+            text: req.body.text,
+            attachments: req.file ? [{ 
+                filename: req.file.originalname, 
+                content: req.file.buffer 
+            }] : []
+        };
 
-    console.log("✅ E-mail envoyé avec succès !");
-    res.status(200).json({ message: 'E-mail envoyé avec succès' });
-  } catch (error) {
-    console.error('❌ Erreur lors de l\'envoi de l\'e-mail:', error);
-    res.status(500).json({ error: 'Erreur lors de l\'envoi de l\'e-mail', details: error.message });
-  }
+        // 📌 Envoi de l'email
+        await transporter.sendMail(mailOptions);
+
+        res.json({ success: true, message: "Email envoyé !" });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Erreur serveur" });
+    }
 });
 // Lancer le serveur
 app.listen(PORT, () => {
