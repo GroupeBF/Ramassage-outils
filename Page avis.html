@@ -197,7 +197,7 @@
           formData.append("text", message || "Aucun commentaire fourni.");
           console.log( message);
       if (file) {
-        formData.append("file", file);
+        formData.append("photo", file);
       }
       
       for (let [key, value] of formData.entries()) {
