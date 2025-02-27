@@ -1,1 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laissez un avis</title>
+  <style>
+    @font-face {
+      font-family: 'Engravers';
+      src: url('Engravers.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'TT Lakes';
+      src: url('TTLakes.ttf') format('truetype');
+    }
+
+    body {
+      font-family: 'TT Lakes', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .title {
+      font-family: 'Engravers', sans-serif;
+      font-size: 28px;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      background-color: rgba(200, 0, 0, 0.4);
+      width: 100vw;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      width: 250px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin: 10px 0;
+    }
+
+    .star {
+      font-size: 25px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .star.selected {
+      color: gold;
+    }
+
+    .button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(200, 0, 0);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .close {
+      cursor: pointer;
+      float: right;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="title">Donnez votre avis</h2>
+  <div class="container" id="products"></div>
+
+  <div class="modal" id="modal">
+    <span class="close" onclick="closeModal()">✖</span>
+    <h3 id="modalTitle"></h3>
+    <div class="stars">
+      <span class="star" onclick="rate(1)">★</span>
+      <span class="star" onclick="rate(2)">★</span>
+      <span class="star" onclick="rate(3)">★</span>
+      <span class="star" onclick="rate(4)">★</span>
+      <span class="star" onclick="rate(5)">★</span>
+    </div>
+    <textarea id="reviewText" placeholder="Votre avis ici..." rows="4" style="width: 100%;"></textarea>
+    <input type="file" id="reviewImage">
+    <button class="button" onclick="sendReview()">Envoyer l’avis</button>
+  </div>
+
+  <script>
+    let selectedProduct = "";
+    let selectedRating = 0;
+
+    async function loadProducts() {
+      const url = `https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/gviz/tq?tqx=out:json`;
+
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        const jsonData = JSON.parse(text.substring(47, text.length - 2));
+        const rows = jsonData.table.rows;
+        const container = document.getElementById("products");
+
+        container.innerHTML = "";
+
+        rows.forEach(row => {
+          const imageUrl = row.c[0].v;
+          const productName = row.c[1].v;
+
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `<img src="${imageUrl}" alt="${productName}"><p>${productName}</p>`;
+          div.onclick = () => openModal(productName);
+
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Erreur lors du chargement des produits :", error);
+      }
+    }
+
+    function openModal(product) {
+      selectedProduct = product;
+      document.getElementById("modalTitle").innerText = `Avis sur ${product}`;
+      selectedRating = 0;
+      document.getElementById("reviewText").value = "";
+      document.getElementById("modal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    function rate(stars) {
+      selectedRating = stars;
+      document.querySelectorAll(".star").forEach((star, index) => {
+        star.classList.toggle("selected", index < stars);
+      });
+    }
+
+    function sendReview() {
+      const reviewText = document.getElementById("reviewText").value;
+      const fileInput = document.getElementById("reviewImage");
+      const file = fileInput.files[0];
+
+      let entreprise = localStorage.getItem('entreprise') || "Entreprise inconnue";
+      let nom = localStorage.getItem('nom') || "Nom inconnu";
+      let subject = `Avis sur ${selectedProduct}`;
+      let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nNote: ${selectedRating} étoiles\nCommentaire: ${reviewText}`;
+
+      const formData = new FormData();
+      formData.append("subject", subject);
+      formData.append("text", message);
+      if (file) {
+        formData.append("file", file);
+      }
+
+      fetch('https://ramassage-outils-production.up.railway.app/send-email', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert("Avis envoyé !");
+        closeModal();
+      })
+      .catch(error => {
+        console.error("Erreur d’envoi :", error);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProducts();
+      document.body.style.opacity = 1;
+    });
+  </script>
+
+</body>
+</html>
 
