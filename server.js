@@ -64,7 +64,7 @@ const transporter = nodemailer.createTransport({
 
 
 // API pour envoyer un e-mail
-app.post('/send-email', upload.single('photo'), (req, res) => {
+app.post('/send-email', upload.single('photo'), async(req, res) => {
   const { subject, text } = req.body;
 
     if (!subject || !text) {
