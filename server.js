@@ -60,6 +60,7 @@ const transporter = nodemailer.createTransport({
 // API pour envoyer un e-mail
 app.post('/send-email', async (req, res) => {
   const { subject, text } = req.body;
+  console.log("Données reçues :", req.body);
 
     if (!subject || !text) {
     console.error('❌ Erreur : Sujet ou texte manquant');
