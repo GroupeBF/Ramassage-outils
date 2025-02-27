@@ -190,7 +190,7 @@
       let entreprise = localStorage.getItem('entreprise') || "Entreprise inconnue";
       let nom = localStorage.getItem('nom') || "Nom inconnu";
       let subject = `Avis sur ${selectedProduct}`;
-      let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nNote: ${selectedRating} étoiles\nCommentaire: ${reviewText}`;
+      let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
       const formData = new FormData();
       formData.append("subject", subject);
