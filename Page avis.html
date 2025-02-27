@@ -199,18 +199,20 @@
         formData.append("file", file);
       }
 
-      fetch('https://ramassage-outils-production.up.railway.app/send-email', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert("Avis envoyé !");
-        closeModal();
-      })
-      .catch(error => {
-        console.error("Erreur d’envoi :", error);
-      });
+console.log("Envoi du formulaire :", formData);
+fetch('https://ramassage-outils-production.up.railway.app/send-email', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    console.log("Réponse serveur :", data);
+    alert("Avis envoyé !");
+    closeModal();
+})
+.catch(error => {
+    console.error("Erreur d’envoi :", error);
+});
     }
 
     document.addEventListener("DOMContentLoaded", () => {
