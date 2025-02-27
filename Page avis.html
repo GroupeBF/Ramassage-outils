@@ -193,15 +193,17 @@
       let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
       const formData = new FormData();
-formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
-formData.append("text", message || "Aucun commentaire fourni.");
-      console.log( message);
+          formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
+          formData.append("text", message || "Aucun commentaire fourni.");
+          console.log( message);
       if (file) {
         formData.append("file", file);
       }
+      
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+}
 
-console.log("Envoi du formulaire :", formData);
-      console.log("FormData envoyé :", [...formData.entries()]);
 fetch('https://ramassage-outils-production.up.railway.app/send-email', {
     method: 'POST',
     body: formData
