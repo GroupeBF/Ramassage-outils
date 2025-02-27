@@ -4,15 +4,20 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
+const upload = multer();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(upload.none());
 
 // Connexion MongoDB (Railway)
 const mongoURI = process.env.MONGODB_URI;
@@ -57,8 +62,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // API pour envoyer un e-mail
 app.post('/send-email', async (req, res) => {
