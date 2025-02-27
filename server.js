@@ -8,7 +8,7 @@ const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
-const upload = multer();
+const upload = multer({ storage: multer.memoryStorage() })
 const PORT = process.env.PORT || 5000;
 
 // Middleware
