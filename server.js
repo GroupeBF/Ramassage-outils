@@ -8,8 +8,8 @@ const multer = require('multer');
 require('dotenv').config();
 
 const app = express();
-const upload = multer({ storage: multer.memoryStorage() })
 const storage = multer.memoryStorage();
+const upload = multer({ storage: multer.memoryStorage() })
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -59,7 +59,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+    pass: process.env.EMAIL_PASS,
   }
 });
 
@@ -78,14 +78,14 @@ app.post('/send-email', upload, async (req, res) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'tonemail@gmail.com', // Remplace par ton email
-                pass: 'tonmotdepasse' // Remplace par ton mot de passe (ou utilise un token d'application)
+                user: process.env.EMAIL_USER, // Remplace par ton email
+                pass: process.env.EMAIL_PASS // Remplace par ton mot de passe (ou utilise un token d'application)
             }
         });
 
         let mailOptions = {
-            from: 'tonemail@gmail.com',
-            to: 'destinataire@gmail.com', // Remplace par le bon destinataire
+            from: process.env.EMAIL_USER,
+            to: 'lboudon@groupebf.fr', // Remplace par le bon destinataire
             subject: req.body.subject,
             text: req.body.text,
             attachments: req.file ? [{ 
