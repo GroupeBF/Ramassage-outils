@@ -65,7 +65,7 @@ const transporter = nodemailer.createTransport({
 
 
 // API pour envoyer un e-mail
-app.post('/send-email', upload, async (req, res) => {
+app.post('/send-email', upload.single('photo'), async (req, res) => {
     try {
         console.log("Données reçues :", req.body);
         console.log("Fichier reçu :", req.file);
