@@ -201,6 +201,7 @@
 
 console.log("Envoi du formulaire :", formData);
 fetch('https://ramassage-outils-production.up.railway.app/send-email', {
+  console.log("FormData envoyé :", [...formData.entries()]);
     method: 'POST',
     body: formData
 })
