@@ -195,6 +195,7 @@
       const formData = new FormData();
 formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
 formData.append("text", message || "Aucun commentaire fourni.");
+      console.log( message);
       if (file) {
         formData.append("file", file);
       }
