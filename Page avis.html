@@ -105,6 +105,19 @@
       margin-top: 10px;
     }
 
+     .validation {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(200, 0, 0);
+       font-family: 'TT Lakes', sans-serif;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+   
+
     .close {
       cursor: pointer;
       float: right;
@@ -184,6 +197,11 @@
     }
 
     function sendReview() {
+        sendReview.innerText = "Envoi en cours...";
+        sendReview.disabled = true;
+        sendReview.classList.add("validation"); 
+        sendReview.classList.add("no-hover"); 
+      
       const reviewText = document.getElementById("reviewText").value;
       const fileInput = document.getElementById("reviewImage");
       const file = fileInput.files[0];
