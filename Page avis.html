@@ -122,6 +122,21 @@
       float: right;
       font-size: 18px;
     }
+
+      @keyframes pulsate {
+            0% {
+                transform: scale(1); /* Taille normale du texte */
+                opacity: 1; /* Opacité normale */
+            }
+            50% {
+                transform: scale(1.03); /* Agrandir légèrement le texte */
+            }
+            100% {
+                transform: scale(1); /* Retour à la taille normale */
+                opacity: 1; /* Opacité normale */
+    }
+}
+    
   </style>
 </head>
 <body>
