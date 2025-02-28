@@ -172,7 +172,6 @@
   <div class="modal" id="modal">
     <span class="close" onclick="closeModal()">✖</span>
     <h3 id="modalTitle"></h3>
-    <img id="selectedProductImage" src="" alt="Produit sélectionné" style="width: 70%;  height: auto; justify-content: center; border-radius: 8px;">
     <div class="stars">
       <span class="star" onclick="rate(1)">★</span>
       <span class="star" onclick="rate(2)">★</span>
@@ -188,7 +187,6 @@
 
   <script>
     let selectedProduct = "";
-    let selectedProductImage = "";
     let selectedRating = 0;
 
     async function loadProducts() {
@@ -210,7 +208,7 @@
           const div = document.createElement("div");
           div.className = "product";
           div.innerHTML = `<img src="${imageUrl}" alt="${productName}"><p>${productName}</p>`;
-          div.onclick = () => openModal(productName, imageUrl);
+          div.onclick = () => openModal(productName);
 
           container.appendChild(div);
         });
@@ -219,13 +217,10 @@
       }
     }
 
-    function openModal(product, image) {
+    function openModal(product) {
       selectedProduct = product;
-      selectedProductImage = image;
       document.getElementById("modalTitle").innerText = `Votre avis sur l'affûtage de ${product}`;
       selectedRating = 0;
-      document.getElementById("selectedProductImage").src = image;
-      document.getElementById("selectedProductImage").style.display = "block";
       document.getElementById("refOutil").value = "";
       document.getElementById("reviewText").value = "";
       document.getElementById("modal").style.display = "block";
