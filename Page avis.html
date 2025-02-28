@@ -81,6 +81,7 @@
       justify-content: center;
       gap: 5px;
       margin: 10px 0;
+      padding:20px;
     }
 
     .star {
@@ -129,7 +130,7 @@
     }
 
     .txt{
-      width:100vw;
+      width:100%;
       margin-top: 10px;
       
     }
@@ -212,7 +213,7 @@
 
     function openModal(product) {
       selectedProduct = product;
-      document.getElementById("modalTitle").innerText = `Avis sur ${product}`;
+      document.getElementById("modalTitle").innerText = `Avis sur le ${product}`;
       selectedRating = 0;
       document.getElementById("refOutil").value = "";
       document.getElementById("reviewText").value = "";
