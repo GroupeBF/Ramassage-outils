@@ -213,6 +213,12 @@
 
     function closeModal() {
       document.getElementById("modal").style.display = "none";
+      sendButton.classList.remove("envoi"); 
+      sendButton.classList.remove("validation"); 
+      sendButton.disabled = false; 
+      sendButton.innerText = "Envoyer";
+      formData = new FormData();
+      
     }
 
     function rate(stars) {
