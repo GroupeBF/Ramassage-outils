@@ -36,7 +36,7 @@
       font-weight: bold;
       background-color: rgba(200, 0, 0, 0.4);
       width: 100vw;
-      padding: 20px;
+      padding: 10px;
     }
 
     .container {
@@ -81,11 +81,11 @@
       justify-content: center;
       gap: 5px;
       margin: 10px 0;
-      padding:20px;
+      padding:10px;
     }
 
     .star {
-      font-size: 25px;
+      font-size: 40px;
       cursor: pointer;
       color: #ccc;
     }
@@ -132,7 +132,11 @@
     .txt{
       width:100%;
       margin-top: 10px;
-      
+    }
+
+    .fichier{
+      margin-top:10px;
+      margin-bottom: 10px;
     }
    
 
@@ -175,7 +179,7 @@
     </div>
     <textarea id="refOutil" placeholder="Référence de votre outil" rows="1" class="txt"></textarea>
     <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" class="txt"></textarea>
-    <input type="file" id="reviewImage">
+    <input type="file" id="reviewImage" class="fichier">
     <button id="sendButton" class="button" onclick="sendReview()">Envoyer</button>
   </div>
 
