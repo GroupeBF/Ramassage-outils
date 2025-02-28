@@ -127,6 +127,12 @@
       cursor: not-allowed;
       animation: pulsate 1s ease-in-out infinite;
     }
+
+    .txt{
+      width:100vw;
+      margin-top: 10px;
+      
+    }
    
 
     .close {
@@ -166,8 +172,8 @@
       <span class="star" onclick="rate(4)">★</span>
       <span class="star" onclick="rate(5)">★</span>
     </div>
-    <textarea id="refOutil" placeholder="Référence de votre outil" rows="1" style="width: 100%;"></textarea>
-    <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" style="width: 100%;"></textarea>
+    <textarea id="refOutil" placeholder="Référence de votre outil" rows="1" class="txt"></textarea>
+    <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" class="txt"></textarea>
     <input type="file" id="reviewImage">
     <button id="sendButton" class="button" onclick="sendReview()">Envoyer</button>
   </div>
