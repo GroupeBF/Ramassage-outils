@@ -218,8 +218,11 @@
 
     function openModal(product, image) {
       selectedProduct = product;
+      selectedProductImage = image;
       document.getElementById("modalTitle").innerText = `Votre avis sur l'affûtage de ${product}`;
       selectedRating = 0;
+      document.getElementById("selectedProductImage").src = image;
+      document.getElementById("selectedProductImage").style.display = "block";
       document.getElementById("refOutil").value = "";
       document.getElementById("reviewText").value = "";
       document.getElementById("modal").style.display = "block";
