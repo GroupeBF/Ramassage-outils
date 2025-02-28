@@ -229,11 +229,13 @@ fetch('https://ramassage-outils-production.up.railway.app/send-email', {
 .then(response => response.json())
 .then(data => {
     console.log("Réponse serveur :", data);
-    alert("Avis envoyé !");
+    sendReview.innerText = "Envoyé ! ✅";
+    sendReview.disabled = true;
     closeModal();
 })
 .catch(error => {
-    console.error("Erreur d’envoi :", error);
+    sendReview.innerText = "Echec envoi ...";
+    sendReview.disabled = false;    
 });
     }
 
