@@ -231,7 +231,6 @@ fetch('https://ramassage-outils-production.up.railway.app/send-email', {
     console.log("Réponse serveur :", data);
     sendButton.innerText = "Envoyé ! ✅";
     sendButton.disabled = true;
-    closeModal();
 })
 .catch(error => {
     sendButton.innerText = "Echec envoi ...";
