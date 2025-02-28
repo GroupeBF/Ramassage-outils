@@ -166,6 +166,7 @@
       <span class="star" onclick="rate(4)">★</span>
       <span class="star" onclick="rate(5)">★</span>
     </div>
+    <textarea id="refOutil" placeholder="Référence de votre outil" rows="1" style="width: 100%;"></textarea>
     <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" style="width: 100%;"></textarea>
     <input type="file" id="reviewImage">
     <button id="sendButton" class="button" onclick="sendReview()">Envoyer</button>
@@ -207,6 +208,7 @@
       selectedProduct = product;
       document.getElementById("modalTitle").innerText = `Avis sur ${product}`;
       selectedRating = 0;
+      document.getElementById("refOutil").value = "";
       document.getElementById("reviewText").value = "";
       document.getElementById("modal").style.display = "block";
     }
@@ -233,7 +235,8 @@
         sendButton.innerText = "Envoi en cours...";
         sendButton.disabled = true;
         sendButton.classList.add("envoi"); 
-      
+
+      const refOutil = document.getElementById("refOutil").value;
       const reviewText = document.getElementById("reviewText").value;
       const fileInput = document.getElementById("reviewImage");
       const file = fileInput.files[0];
@@ -241,7 +244,7 @@
       let entreprise = localStorage.getItem('entreprise') || "Entreprise inconnue";
       let nom = localStorage.getItem('nom') || "Nom inconnu";
       let subject = `Avis sur ${selectedProduct}`;
-      let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
+      let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nRéférence de l'outil:${refOutil}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
       const formData = new FormData();
           formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
