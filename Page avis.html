@@ -105,7 +105,7 @@
       margin-top: 10px;
     }
 
-    .validation {
+    .envoi {
       margin-top:40px;
       display: inline-block;
       background-color: rgba(255, 255, 255, 0.8);
@@ -114,6 +114,18 @@
       font-weight: bold;
       color: black; 
       cursor: not-allowed;
+    }
+    
+    .validation {
+      margin-top:40px;
+      display: inline-block;
+      background-color: rgba(0, 255, 0, 0.3);
+      border: 2px solid rgb(0, 200, 0);
+      font-size: 16px;
+      font-weight: bold;
+      color: black; 
+      cursor: not-allowed;
+      animation: pulsate 1s ease-in-out infinite;
     }
    
 
@@ -213,8 +225,7 @@
     function sendReview() {
         sendButton.innerText = "Envoi en cours...";
         sendButton.disabled = true;
-        sendButton.classList.add("validation"); 
-        sendButton.classList.add("no-hover"); 
+        sendButton.classList.add("envoi"); 
       
       const reviewText = document.getElementById("reviewText").value;
       const fileInput = document.getElementById("reviewImage");
@@ -244,10 +255,13 @@ fetch('https://ramassage-outils-production.up.railway.app/send-email', {
 .then(response => response.json())
 .then(data => {
     console.log("Réponse serveur :", data);
+    sendButton.classList.remove("envoi"); 
+    sendButton.classList.add("validation"); 
     sendButton.innerText = "Envoyé ! ✅";
     sendButton.disabled = true;
 })
 .catch(error => {
+    sendButton.classList.remove("envoi");
     sendButton.innerText = "Echec envoi ...";
     sendButton.disabled = false;    
 });
