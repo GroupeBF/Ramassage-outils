@@ -141,7 +141,7 @@
     </div>
     <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" style="width: 100%;"></textarea>
     <input type="file" id="reviewImage">
-    <button class="button" onclick="sendReview()">Envoyer</button>
+    <button id="sendButton" class="button" onclick="sendReview()">Envoyer</button>
   </div>
 
   <script>
@@ -196,10 +196,10 @@
     }
 
     function sendReview() {
-        sendReview.innerText = "Envoi en cours...";
-        sendReview.disabled = true;
-        sendReview.classList.add("validation"); 
-        sendReview.classList.add("no-hover"); 
+        sendButton.innerText = "Envoi en cours...";
+        sendButton.disabled = true;
+        sendButton.classList.add("validation"); 
+        sendButton.classList.add("no-hover"); 
       
       const reviewText = document.getElementById("reviewText").value;
       const fileInput = document.getElementById("reviewImage");
@@ -229,13 +229,13 @@ fetch('https://ramassage-outils-production.up.railway.app/send-email', {
 .then(response => response.json())
 .then(data => {
     console.log("Réponse serveur :", data);
-    sendReview.innerText = "Envoyé ! ✅";
-    sendReview.disabled = true;
+    sendButton.innerText = "Envoyé ! ✅";
+    sendButton.disabled = true;
     closeModal();
 })
 .catch(error => {
-    sendReview.innerText = "Echec envoi ...";
-    sendReview.disabled = false;    
+    sendButton.innerText = "Echec envoi ...";
+    sendButton.disabled = false;    
 });
     }
 
