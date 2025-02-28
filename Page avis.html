@@ -171,6 +171,7 @@
   <div class="modal" id="modal">
     <span class="close" onclick="closeModal()">✖</span>
     <h3 id="modalTitle"></h3>
+    <img id="selectedProductImage" src="" alt="Produit sélectionné" style="width: 100%; max-height: 200px; display: none; border-radius: 8px;">
     <div class="stars">
       <span class="star" onclick="rate(1)">★</span>
       <span class="star" onclick="rate(2)">★</span>
@@ -178,7 +179,6 @@
       <span class="star" onclick="rate(4)">★</span>
       <span class="star" onclick="rate(5)">★</span>
     </div>
-    <img id="selectedProductImage" src="" alt="Produit sélectionné" style="width: 100%; max-height: 200px; display: none; border-radius: 8px;">
     <textarea id="refOutil" placeholder="Référence de votre outil" rows="1" class="txt"></textarea>
     <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" class="txt"></textarea>
     <input type="file" id="reviewImage" class="fichier">
