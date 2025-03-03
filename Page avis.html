@@ -180,7 +180,8 @@
     <span class="close" onclick="closeModal()">✖</span>
     <h3 id="modalTitle"></h3>
     <textarea id="Nom" placeholder="Votre nom" rows="1" class="txt"></textarea>
-    <textarea id="Entreprise" placeholder="Votre entreprise" rows="4" class="txt"></textarea>
+    <textarea id="Entreprise" placeholder="Votre entreprise" rows="1" class="txt"></textarea>
+    <h3 id="Note" class="titlebis"></h3>
     <div class="stars">
       <span class="star" onclick="rate(1)">★</span>
       <span class="star" onclick="rate(2)">★</span>
@@ -188,7 +189,7 @@
       <span class="star" onclick="rate(4)">★</span>
       <span class="star" onclick="rate(5)">★</span>
     </div>
-    <h3 id="modalTitlebis" class="titlebis"></h3>
+    <h3 id="Precisions" class="titlebis"></h3>
     <textarea id="refOutil" placeholder="Référence de votre outil" rows="1" class="txt"></textarea>
     <textarea id="reviewText" placeholder="Ajoutez votre commentaire ici" rows="4" class="txt"></textarea>
     <input type="file" id="reviewImage" class="fichier">
@@ -230,8 +231,9 @@
     function openModal(product) {
       selectedProduct = product;
       document.getElementById("modalTitle").innerText = `Votre avis sur l'affûtage des ${product}`;
+      document.getElementById("Note").innerText = `Quelle note donnez-vous à notre préstation ?`;
       selectedRating = 0;
-      document.getElementById("modalTitlebis").innerText = `Donnez nous plus de précisions ! (optionnel)`;
+      document.getElementById("Precisions").innerText = `Donnez nous plus de précisions ! (optionnel)`;
       document.getElementById("refOutil").value = "";
       document.getElementById("reviewText").value = "";
       document.getElementById("modal").style.display = "block";
