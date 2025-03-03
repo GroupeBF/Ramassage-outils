@@ -320,11 +320,11 @@
         sendButton.disabled = false;    
 });
     }else{
-        if (!entreprise.value) entreprise.classList.add("error");
-        if (!nom.value) nom.classList.add("error");
+        if (!entreprise.value) document.getElementById("entreprise").classList.add("error");
+        if (!nom.value) document.getElementById("nom").classList.add("error");
         setTimeout(() => {
-            entreprise.classList.remove("error");
-            nom.classList.remove("error");
+            document.getElementById("entreprise").classList.remove("error");
+            document.getElementById("nom").classList.remove("error");
         }, 15000);
       }
     }
