@@ -238,7 +238,7 @@
       document.getElementById("Note").innerText = `Quelle note donnez-vous à notre préstation ?`;
       selectedRating = 0;
       document.getElementById("Precisions").innerText = `Donnez nous plus de précisions ! (optionnel)`;
-      document.getElementById("refOutil").value = "localStorage.getItem('entreprise') || """;
+      document.getElementById("refOutil").value = localStorage.getItem('entreprise') || "";
       document.getElementById("reviewText").value = "";
       document.getElementById("modal").style.display = "block";
     }
