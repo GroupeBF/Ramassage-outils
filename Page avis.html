@@ -234,6 +234,8 @@
 
     function openModal(product) {
       selectedProduct = product;
+      let Entreprise = localStorage.getItem('entreprise') || "Nom de votre enreprise";
+      let Nom = localStorage.getItem('nom') || "Votre nom";
       document.getElementById("modalTitle").innerText = `Votre avis sur l'affûtage des ${product}`;
       document.getElementById("Note").innerText = `Quelle note donnez-vous à notre préstation ?`;
       selectedRating = 0;
