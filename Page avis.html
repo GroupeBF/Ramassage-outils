@@ -75,7 +75,7 @@
     .modal {
       display: none;
       position: fixed;
-      top: 10%;
+      top: 5%;
       align:center;
       justify-content: center;
       background: white;
@@ -157,6 +157,10 @@
       cursor: pointer;
       float: right;
       font-size: 18px;
+    }
+
+    .error {
+      animation: blink 0.3s ease-in-out 4;
     }
 
       @keyframes pulsate {
@@ -264,17 +268,20 @@
     }
 
     function sendReview() {
-        sendButton.innerText = "Envoi en cours...";
-        sendButton.disabled = true;
-        sendButton.classList.add("envoi"); 
+      
+      let entreprise = localStorage.getItem('entreprise') || "";
+      let nom = localStorage.getItem('nom') || "";
+
+      if (entreprise && nom){
+      sendButton.innerText = "Envoi en cours...";
+      sendButton.disabled = true;
+      sendButton.classList.add("envoi"); 
 
       const refOutil = document.getElementById("refOutil").value;
       const reviewText = document.getElementById("reviewText").value;
       const fileInput = document.getElementById("reviewImage");
       const file = fileInput.files[0];
 
-      let entreprise = localStorage.getItem('entreprise') || "Entreprise inconnue";
-      let nom = localStorage.getItem('nom') || "Nom inconnu";
       let subject = `Avis sur ${selectedProduct}`;
       let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nRéférence de l'outil:${refOutil}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
@@ -290,25 +297,32 @@
         console.log(`${key}:`, value);
 }
 
-fetch('https://ramassage-outils-production.up.railway.app/send-email', {
-    method: 'POST',
-    body: formData
+      fetch('https://ramassage-outils-production.up.railway.app/send-email', {
+        method: 'POST',
+        body: formData
 })
-.then(response => response.json())
-.then(data => {
-    console.log("Réponse serveur :", data);
-    sendButton.classList.remove("envoi"); 
-    sendButton.classList.add("validation"); 
-    sendButton.innerText = "Envoyé ! ✅";
-    sendButton.disabled = true;
+      .then(response => response.json())
+      .then(data => {
+        console.log("Réponse serveur :", data);
+        sendButton.classList.remove("envoi"); 
+        sendButton.classList.add("validation"); 
+        sendButton.innerText = "Envoyé ! ✅";
+        sendButton.disabled = true;
 })
-.catch(error => {
-    sendButton.classList.remove("envoi");
-    sendButton.innerText = "Echec envoi ...";
-    sendButton.disabled = false;    
+    .catch(error => {
+        sendButton.classList.remove("envoi");
+        sendButton.innerText = "Echec envoi ...";
+        sendButton.disabled = false;    
 });
+    }else{
+        if (!entreprise.value) entreprise.classList.add("error");
+        if (!nom.value) nom.classList.add("error");
+        setTimeout(() => {
+            entreprise.classList.remove("error");
+            nom.classList.remove("error");
+        }, 15000);
+      }
     }
-
     document.addEventListener("DOMContentLoaded", () => {
       loadProducts();
       document.body.style.opacity = 1;
