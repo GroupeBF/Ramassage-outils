@@ -269,8 +269,8 @@
 
     function sendReview() {
       
-      let entreprise = localStorage.getItem('entreprise') || "";
-      let nom = localStorage.getItem('nom') || "";
+      let entreprise = document.getElementById("entreprise").value;
+      let nom = document.getElementById("nom").value;
 
       if (entreprise && nom){
       sendButton.innerText = "Envoi en cours...";
