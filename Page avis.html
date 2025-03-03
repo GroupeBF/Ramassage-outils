@@ -75,7 +75,7 @@
     .modal {
       display: none;
       position: fixed;
-      top: 25%;
+      top: 10%;
       align:center;
       justify-content: center;
       background: white;
@@ -140,7 +140,7 @@
 
     .txt{
       width:100%;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     .fichier{
@@ -179,6 +179,8 @@
   <div class="modal" id="modal">
     <span class="close" onclick="closeModal()">✖</span>
     <h3 id="modalTitle"></h3>
+    <textarea id="Nom" placeholder="Votre nom" rows="1" class="txt"></textarea>
+    <textarea id="Entreprise" placeholder="Votre entreprise" rows="4" class="txt"></textarea>
     <div class="stars">
       <span class="star" onclick="rate(1)">★</span>
       <span class="star" onclick="rate(2)">★</span>
@@ -229,7 +231,7 @@
       selectedProduct = product;
       document.getElementById("modalTitle").innerText = `Votre avis sur l'affûtage des ${product}`;
       selectedRating = 0;
-      document.getElementById("modalTitlebis").innerText = `Donnez nous plus de précisions : (optionnel)`;
+      document.getElementById("modalTitlebis").innerText = `Donnez nous plus de précisions ! (optionnel)`;
       document.getElementById("refOutil").value = "";
       document.getElementById("reviewText").value = "";
       document.getElementById("modal").style.display = "block";
