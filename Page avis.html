@@ -88,7 +88,7 @@
     .stars {
       display: inline-block;
       padding-right: 15px;
-      padding-left: 20px;
+      padding-left: 15px;
       margin: auto ;
       justify-content: center;
       border: 2px solid rgb(200, 0, 0);
@@ -196,6 +196,8 @@
     <h3 id="modalTitle"></h3>
     <textarea id="nom" placeholder="Votre Nom" rows="1" class="txt"></textarea>
     <textarea id="entreprise" placeholder="Votre entreprise" rows="1" class="txt"></textarea>
+    <textarea id="coordonnees" placeholder="Votre N° de téléphone ou e-mail" rows="1" class="txt"></textarea>
+    <textarea id="entreprise" placeholder="Votre entreprise" rows="1" class="txt"></textarea>
     <h3 id="Note" class="titlebis"></h3>
     <div class="stars">
       <span class="star" onclick="rate(1)">★</span>
@@ -253,6 +255,7 @@
       document.getElementById("reviewText").value = "";
       document.getElementById("entreprise").value = localStorage.getItem('entreprise') || "";
       document.getElementById("nom").value = localStorage.getItem('nom') || "";
+      document.getElementById("coordonnées").value = localStorage.getItem('coordonnees') || "";
       document.getElementById("modal").style.display = "block";
     }
 
@@ -278,52 +281,58 @@
       
       let entreprise = document.getElementById("entreprise").value;
       let nom = document.getElementById("nom").value;
+      let coordonnees = document.getElementById("coordonnees").value;
 
-      if (entreprise && nom){
-      sendButton.innerText = "Envoi en cours...";
-      sendButton.disabled = true;
-      sendButton.classList.add("envoi"); 
+      if (entreprise && nom && coordonnees){
+          localStorage.setItem('entreprise', entreprise);
+          localStorage.setItem('nom', nom);
+          localStorage.setItem('coordonnees', coordonnees);
+        
+          sendButton.innerText = "Envoi en cours...";
+          sendButton.disabled = true;
+          sendButton.classList.add("envoi"); 
 
-      const refOutil = document.getElementById("refOutil").value;
-      const reviewText = document.getElementById("reviewText").value;
-      const fileInput = document.getElementById("reviewImage");
-      const file = fileInput.files[0];
+          const refOutil = document.getElementById("refOutil").value;
+          const reviewText = document.getElementById("reviewText").value;
+          const fileInput = document.getElementById("reviewImage");
+          const file = fileInput.files[0];
 
-      let subject = `Avis sur ${selectedProduct}`;
-      let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nRéférence de l'outil:${refOutil}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
+          let subject = `Avis sur ${selectedProduct}`;
+          let message = `Avis de ${nom} (${entreprise}):\nProduit: ${selectedProduct}\nRéférence de l'outil:${refOutil}\nNote: ${selectedRating || "Pas de note"} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
-      const formData = new FormData();
+          const formData = new FormData();
           formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
           formData.append("text", message || "Aucun commentaire fourni.");
           console.log( message);
-      if (file) {
-        formData.append("photo", file);
+          if (file) {
+              formData.append("photo", file);
       }
       
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
+          for (let [key, value] of formData.entries()) {
+              console.log(`${key}:`, value);
 }
 
-      fetch('https://ramassage-outils-production.up.railway.app/send-email', {
-        method: 'POST',
-        body: formData
+          fetch('https://ramassage-outils-production.up.railway.app/send-email', {
+              method: 'POST',
+              body: formData
 })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Réponse serveur :", data);
-        sendButton.classList.remove("envoi"); 
-        sendButton.classList.add("validation"); 
-        sendButton.innerText = "Envoyé ! ✅";
-        sendButton.disabled = true;
+          .then(response => response.json())
+          .then(data => {
+          console.log("Réponse serveur :", data);
+          sendButton.classList.remove("envoi"); 
+          sendButton.classList.add("validation"); 
+          sendButton.innerText = "Envoyé ! ✅";
+          sendButton.disabled = true;
 })
-    .catch(error => {
-        sendButton.classList.remove("envoi");
-        sendButton.innerText = "Echec envoi ...";
-        sendButton.disabled = false;    
+          .catch(error => {
+              sendButton.classList.remove("envoi");
+              sendButton.innerText = "Echec envoi ...";
+              sendButton.disabled = false;    
 });
     }else{
         if (!entreprise.value) document.getElementById("entreprise").classList.add("error");
         if (!nom.value) document.getElementById("nom").classList.add("error");
+        if (!coordonnées.value) document.getElementById("coordonnées").classList.add("error");
         setTimeout(() => {
             document.getElementById("entreprise").classList.remove("error");
             document.getElementById("nom").classList.remove("error");
