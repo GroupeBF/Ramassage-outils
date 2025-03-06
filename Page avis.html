@@ -208,7 +208,7 @@
     <textarea id="entreprise" placeholder="Votre entreprise" rows="1" class="txt"></textarea>
     <textarea id="coordonnees" placeholder="Vos coordonnées (téléphone/e-mail/les deux)" rows="1" class="txt"></textarea>
     <h3 id="Note" class="titlebis"></h3>
-    <div class="stars">
+    <div id= "stars" class="stars">
       <span class="star" onclick="rate(1)">★</span>
       <span class="star" onclick="rate(2)">★</span>
       <span class="star" onclick="rate(3)">★</span>
@@ -342,12 +342,12 @@
         if (!entreprise.value) document.getElementById("entreprise").classList.add("error");
         if (!nom.value) document.getElementById("nom").classList.add("error");
         if (!coordonnees.value) document.getElementById("coordonnees").classList.add("error");
-        if (!selectedRating) document.getElementById("stars").classList.add("error");
+        if (!selectedRating) document.getElementById("stars").classList.add("errorStars");
         setTimeout(() => {
             document.getElementById("entreprise").classList.remove("error");
             document.getElementById("nom").classList.remove("error");
             document.getElementById("coordonnees").classList.remove("error");
-            document.getElementById("stars").classList.remove("error");
+            document.getElementById("stars").classList.remove("errorStars");
           
         }, 1500);
       }
