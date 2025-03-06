@@ -332,6 +332,7 @@
           sendButton.classList.add("validation"); 
           sendButton.innerText = "Envoyé ! ✅";
           sendButton.disabled = true;
+          recordUserActivity("Avis", entreprise, nom, coordonnees);
 })
           .catch(error => {
               sendButton.classList.remove("envoi");
@@ -352,6 +353,35 @@
         }, 1500);
       }
     }
+
+    function recordUserActivity(action, entreprise, nom, coordonnees) {
+    const dateOptions = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        timeZone: 'Europe/Paris'
+    };
+
+    const frenchTime = new Intl.DateTimeFormat('fr-FR', dateOptions).format(new Date());
+
+    const activityData = {
+        Action: action,
+        Entreprise: entreprise,
+        Utilisateur: nom,
+        Coordonnées: coordonnees,
+        Heure: frenchTime,
+    };
+
+    fetch('https://ramassage-outils-production.up.railway.app/record-activity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(activityData)
+    }).catch(err => console.error('Erreur d’enregistrement de l’activité', err));
+}
     
     document.addEventListener("DOMContentLoaded", () => {
       loadProducts();
