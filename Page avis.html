@@ -93,10 +93,13 @@
       justify-content: center;
       border: 2px solid rgb(200, 0, 0);
       border-radius: 20px;
-      animation: pulsate 2s ease-in-out infinite;
-      
     }
 
+    .animation {
+      animation: pulsate 2s ease-in-out infinite;
+
+    }
+    
     .star {
       font-size: 40px;
       justify-content: center;
@@ -208,7 +211,7 @@
     <textarea id="entreprise" placeholder="Votre entreprise" rows="1" class="txt"></textarea>
     <textarea id="coordonnees" placeholder="Vos coordonnées (téléphone/e-mail/les deux)" rows="1" class="txt"></textarea>
     <h3 id="Note" class="titlebis"></h3>
-    <div id= "stars" class="stars">
+    <div id= "stars" class="stars animation">
       <span class="star" onclick="rate(1)">★</span>
       <span class="star" onclick="rate(2)">★</span>
       <span class="star" onclick="rate(3)">★</span>
@@ -297,6 +300,7 @@
       document.querySelectorAll(".star").forEach((star, index) => {
         star.classList.toggle("selected", index < stars);
       });
+      document.getElementById("stars").classList.remove("animation");
     }
 
     function sendReview() {
@@ -320,7 +324,7 @@
           const file = fileInput.files[0];
 
           let subject = `Avis sur ${selectedProduct}`;
-          let message = `Avis de ${nom} (entrepsrise: ${entreprise}), ${coordonnees}:\nProduit: ${selectedProduct}\nRéférence de l'outil:${refOutil || "Pas de référece renseignée"}\nNote: ${selectedRating} étoiles\nCommentaire: ${reviewText || "Pas de commentaire"}`;
+          let message = `Avis de ${nom} (entrepsrise: ${entreprise})\nCoordonnées: ${coordonnees}\nProduit: ${selectedProduct}\nNote: ${selectedRating} étoiles\nRéférence de l'outil: ${refOutil || "Pas de référece renseignée"}\nCommentaire: ${reviewText || "Pas de commentaire"}`;
 
           const formData = new FormData();
           formData.append("subject", `Avis sur ${selectedProduct || "Produit inconnu"}`);
