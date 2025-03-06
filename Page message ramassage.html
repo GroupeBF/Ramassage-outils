@@ -198,8 +198,6 @@
             let nom = document.getElementById('nom').value;
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
-            localStorage.setItem('entreprise', entreprise.value);
-            localStorage.setItem('nom', nom.value);
 
         if (entreprise && nom) {
         let message = `Bonjour ${contact},\n\nNous aurions besoin d’un ramassage d’outils chez ${entreprise}.\n\n` +
