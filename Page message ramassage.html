@@ -266,9 +266,9 @@
         });
     }
  else {
-                if (!entreprise.value) document.getElementById("entreprise").classList.add("error");
-                if (!nom.value) document.getElementById("nom").classList.add("error");
-                if (!coordonnees.value) document.getElementById("coordonnees").classList.add("error");
+                if (!entreprise) document.getElementById("entreprise").classList.add("error");
+                if (!nom) document.getElementById("nom").classList.add("error");
+                if (!coordonnees) document.getElementById("coordonnees").classList.add("error");
                 setTimeout(() => {
                     document.getElementById("entreprise").classList.remove("error");
                     document.getElementById("nom").classList.remove("error");
