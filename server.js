@@ -41,7 +41,7 @@ const Activity = mongoose.model('Activity', activitySchema);
 app.post('/record-activity', (req, res) => {
   console.log("📩 Requête reçue : ", req.body);
   const { Action, Entreprise, Utilisateur, Coordonnees, Heure } = req.body;
-  const newActivity = new Activity({ Action, Entreprise, Utilisateur, Coordonees, Heure });
+  const newActivity = new Activity({ Action, Entreprise, Utilisateur, Coordonnees, Heure });
 
   newActivity.save()
     .then(() => {
