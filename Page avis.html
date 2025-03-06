@@ -226,6 +226,19 @@
     let selectedProduct = "";
     let selectedRating = 0;
 
+            document.getElementById('entreprise').addEventListener('blur', function() {
+            localStorage.setItem('entreprise', this.value);
+});
+
+        document.getElementById('nom').addEventListener('blur', function() {
+            localStorage.setItem('nom', this.value);
+});
+
+        document.getElementById('coordonnees').addEventListener('blur', function() {
+            localStorage.setItem('coordonnees', this.value);
+});
+
+
     async function loadProducts() {
       const url = `https://docs.google.com/spreadsheets/d/1YTxftitTFaecPUNQrmUms6t2hD2wY0vYuIDqyNV9d0Y/gviz/tq?tqx=out:json`;
 
