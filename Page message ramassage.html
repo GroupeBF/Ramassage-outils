@@ -165,6 +165,8 @@
     <input type="text" id="entreprise" class="input">
     <label class="label" for="nom">Votre prénom et nom :</label>
     <input type="text" id="nom" class="input">
+    <label class="label" for="coordonnees">Vos coordonnées (téléphone/mail/les deux) :</label>
+    <input type="text" id="coordonnees" class="input">
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     
     
@@ -178,28 +180,32 @@
             localStorage.setItem('nom', this.value);
 });
 
+        document.getElementById('coordonnees').addEventListener('blur', function() {
+            localStorage.setItem('coordonnees', this.value);
+});
+
         
         document.addEventListener("DOMContentLoaded", function() {
             let entreprise = localStorage.getItem('entreprise') || "";
             let nom = localStorage.getItem('nom') || "";
-            let contact = localStorage.getItem('contactName') || "[Contact inconnu]";
+            let coordonnees = localStorage.getItem('coordonnees') || "";
             document.getElementById('entreprise').value = entreprise;
             document.getElementById('nom').value = nom;
+            document.getElementById('coordonnees').value = coordonnees;
+            document.getElementById('sendButton').innerText = `Envoyer votre demande de ramassage d'outils`;
             
-            if(contact === "Secrétariat"){
-            document.getElementById('sendButton').innerText = `Envoyer votre demande à notre ${contact}`;
-            }else{
-                document.getElementById('sendButton').innerText = `Envoyer votre demande à ${contact}`;
-            }
+               
+            
         });
 
         function sendSMS() {
             let entreprise = document.getElementById('entreprise').value;
             let nom = document.getElementById('nom').value;
+            let coordonnees = document.getElementById('coordonnees').value;
             let contact = localStorage.getItem('contactName');
             let phone = localStorage.getItem('contactPhone');
 
-        if (entreprise && nom) {
+        if (entreprise && nom && coordonnees) {
         let message = `Bonjour ${contact},\n\nNous aurions besoin d’un ramassage d’outils chez ${entreprise}.\n\n` +
                       `Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\n` +
                       `Bien cordialement,\n${nom}`;
@@ -224,6 +230,7 @@
             console.log("✅ E-mail envoyé avec succès", data);
             sendButton.innerText = "✅   Message envoyé !   ✅";
             sendButton.disabled = true;
+            recordUserActivity("Demande de ramassage d'outils", entreprise, nom, coordonnees);
         })
         .catch(error => {
             console.error("❌ Erreur lors de l'envoi de l'e-mail", error);
@@ -259,6 +266,7 @@ function recordUserActivity(action, entreprise, nom) {
         Action: action,
         Entreprise: entreprise,
         Utilisateur: nom,
+        Coordonnees: coordonnees,
         Heure: frenchTime,
     };
 
