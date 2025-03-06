@@ -45,10 +45,7 @@
         .label {
             font-family: 'Engravers', sans-serif;
             font-size: 20px;
-            text-align: left;
-            align-items:left;
             margin-left: 20px;
-            display: block;
             margin-top: 20px;
             background-color: rgba(255, 255, 255, 0.8);
             border: 1px solid rgb(200, 200, 200);
@@ -165,7 +162,7 @@
     <input type="text" id="entreprise" class="input">
     <label class="label" for="nom">Votre prénom et nom :</label>
     <input type="text" id="nom" class="input">
-    <label class="label" for="coordonnees">Vos coordonnées (téléphone/mail/les deux) :</label>
+    <label class="label" for="coordonnees">Vos coordonnées (téléphone / mail / les deux) :</label>
     <input type="text" id="coordonnees" class="input">
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     
@@ -241,9 +238,11 @@
  else {
                 if (!entreprise.value) entreprise.classList.add("error");
                 if (!nom.value) nom.classList.add("error");
+                 if (!coordonnees.value) cooronnees.classList.add("error");
                 setTimeout(() => {
                     entreprise.classList.remove("error");
                     nom.classList.remove("error");
+                    cooronnees.classList.remove("error");
                 }, 15000);
 
             }
