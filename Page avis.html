@@ -342,12 +342,12 @@
         if (!entreprise.value) document.getElementById("entreprise").classList.add("error");
         if (!nom.value) document.getElementById("nom").classList.add("error");
         if (!coordonnees.value) document.getElementById("coordonnees").classList.add("error");
-        if (!selectedRating) document.getElementById("stars").classList.add("errorStars");
+        if (!selectedRating) document.getElementById("stars").classList.add("error");
         setTimeout(() => {
             document.getElementById("entreprise").classList.remove("error");
             document.getElementById("nom").classList.remove("error");
             document.getElementById("coordonnees").classList.remove("error");
-            document.getElementById("stars").classList.remove("errorStars");
+            document.getElementById("stars").classList.remove("error");
           
         }, 1500);
       }
