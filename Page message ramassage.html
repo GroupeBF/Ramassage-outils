@@ -184,6 +184,14 @@
     <label class="label" for="coordonnees"> Vos coordonnées :<br>
                                             <span class="subLabel">(téléphone / mail / les deux)</span></label>
     <input type="text" id="coordonnees" class="input">
+    <select id="personnes" name="personnes">
+        <option value="" disabled selected>-- Sélectionnez une personne --</option>
+        <option value="Sébastien">Sébastien Philippon</option>
+        <option value="Pierre">Pierre Renaud</option>
+        <option value="Jérôme">Jérôme Vinière</option>
+        <option value="Alain">Alain Faucher</option>
+    </select>
+    
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     
     
