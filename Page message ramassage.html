@@ -34,6 +34,7 @@
         .title {
             font-family: 'Engravers', sans-serif;
             margin: 0 auto;
+            margin-top: 20px;
             font-size: 38px;
             text-align: center;
             color: rgb(255, 255, 255); 
@@ -60,15 +61,12 @@
             font-size: 16px;
             font-family: 'TT Lakes', sans-serif;
             margin-top: 5px;
+            margin-left: 10px;
             align-item: center;
             border: 2px solid black;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.8);
             transition: border-color 0.3s ease-in-out;
-        }
-
-        .container{
-            padding:10px;
         }
         
         .button {
@@ -166,11 +164,11 @@
 <body>
     <h2 class="title">Vos informations</h2>
     <label class="label" for="entreprise">Le nom de votre entreprise :</label>
-    <input type="text" id="entreprise" class="input container">
+    <input type="text" id="entreprise" class="input">
     <label class="label" for="nom">Votre prénom et nom :</label>
-    <input type="text" id="nom" class="input container">
+    <input type="text" id="nom" class="input">
     <label class="label" for="coordonnees">Vos coordonnées (téléphone / mail / les deux) :</label>
-    <input type="text" id="coordonnees" class="input container">
+    <input type="text" id="coordonnees" class="input">
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     
     
