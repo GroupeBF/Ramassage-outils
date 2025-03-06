@@ -32,7 +32,7 @@ const activitySchema = new mongoose.Schema({
   Action: String,
   Entreprise: String,
   Utilisateur: String,
-  Coordonnees: String,
+  Coordonnées: String,
   Heure: String
 });
 const Activity = mongoose.model('Activity', activitySchema);
