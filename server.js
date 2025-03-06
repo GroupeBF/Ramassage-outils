@@ -32,6 +32,7 @@ const activitySchema = new mongoose.Schema({
   Action: String,
   Entreprise: String,
   Utilisateur: String,
+  Coordonnées: String,
   Heure: String
 });
 const Activity = mongoose.model('Activity', activitySchema);
@@ -39,8 +40,8 @@ const Activity = mongoose.model('Activity', activitySchema);
 // 📌 API pour enregistrer l'activité utilisateur
 app.post('/record-activity', (req, res) => {
   console.log("📩 Requête reçue : ", req.body);
-  const { Action, Entreprise, Utilisateur, Heure } = req.body;
-  const newActivity = new Activity({ Action, Entreprise, Utilisateur, Heure });
+  const { Action, Entreprise, Utilisateur, Coordonnées, Heure } = req.body;
+  const newActivity = new Activity({ Action, Entreprise, Utilisateur, Coordonées, Heure });
 
   newActivity.save()
     .then(() => {
