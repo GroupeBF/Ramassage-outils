@@ -149,6 +149,7 @@
             display: flex;
             vertical-align: middle;
             margin-left: 10px;
+            margin-right: 10px;
             background-color: rgba(255, 255, 255, 0.3);
             padding: 10px;
             border-radius: 5px;
@@ -215,11 +216,11 @@
     <input type="text" id="coordonnees" class="input">
     <label class="label" for="livreur">Qui avez-vous l'habitude de voir ?</label>
 <form>
-    <label><span class="livreur"><input type="radio" name="livreur" value="Sébastien">  Sébastien Philippon</span></label><br>
-    <label><span class="livreur"><input type="radio" name="livreur" value="Pierre">  Pierre Renaud</span></label><br>
-    <label><span class="livreur"><input type="radio" name="livreur" value="Jérôme">  Jérôme Vinière</span></label><br>
-    <label><span class="livreur"><input type="radio" name="livreur" value="Alain">  Alain Faucher</span></label><br>
-    <label><span class="livreur"><input type="radio" name="livreur" value="Personne">  Vous ne connaissez personne</span></label><br>
+    <label class="livreur"><input type="radio" name="livreur" value="Sébastien">  Sébastien Philippon</label><br>
+    <label class="livreur"><input type="radio" name="livreur" value="Pierre">  Pierre Renaud</label><br>
+    <label class="livreur"><input type="radio" name="livreur" value="Jérôme">  Jérôme Vinière</label><br>
+    <label class="livreur"><input type="radio" name="livreur" value="Alain">  Alain Faucher</label><br>
+    <label class="livreur"><input type="radio" name="livreur" value="Personne">  Vous ne connaissez personne</label><br>
 </form>
     
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
