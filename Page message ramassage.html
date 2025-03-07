@@ -87,8 +87,9 @@
 
         input[type="radio"] {
             appearance: none;
-            width: 20px;
-            height: 20px;
+            vertical-align: middle;
+            width: 17px;
+            height: 17px;
             border: 2px solid rgb(200, 0, 0);
             border-radius: 50%;
             display: inline-block;
@@ -143,7 +144,10 @@
             font-weight: bold;
             color: black; 
             cursor: not-allowed;
-}
+        }
+        .livreur{
+            margin-left: 10px;
+            
 
         
         @keyframes blink {
@@ -205,11 +209,11 @@
     <input type="text" id="coordonnees" class="input">
     <label class="label" for="livreur">Qui avez-vous l'habitude de voir ?</label>
 <form>
-    <label><input type="radio" name="livreur" value="Sébastien">Sébastien Philippon</label><br>
-    <label><input type="radio" name="livreur" value="Pierre">Pierre Renaud</label><br>
-    <label><input type="radio" name="livreur" value="Jérôme"> Jérôme Vinière</label><br>
-    <label><input type="radio" name="livreur" value="Alain"> Alain Faucher</label><br>
-    <label><input type="radio" name="livreur" value="Personne"> Vous ne connaissez personne</label><br>
+    <label><input type="radio" name="livreur" class="livreur" value="Sébastien">Sébastien Philippon</label><br>
+    <label><input type="radio" name="livreur" class="livreur" value="Pierre">Pierre Renaud</label><br>
+    <label><input type="radio" name="livreur" class="livreur" value="Jérôme"> Jérôme Vinière</label><br>
+    <label><input type="radio" name="livreur" class="livreur" value="Alain"> Alain Faucher</label><br>
+    <label><input type="radio" name="livreur" class="livreur" value="Personne"> Vous ne connaissez personne</label><br>
 </form>
     
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
