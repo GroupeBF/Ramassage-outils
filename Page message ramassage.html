@@ -186,13 +186,13 @@
     <label class="label" for="coordonnees"> Vos coordonnées :<br>
                                             <span class="subLabel">(téléphone / mail / les deux)</span></label>
     <input type="text" id="coordonnees" class="input">
-    <select id="personnes" name="personnes">
-        <option value="" disabled selected>Sélectionnez la personne que vous avez l'habitude de voir</option>
-        <option value="Sébastien">Sébastien Philippon</option>
-        <option value="Pierre">Pierre Renaud</option>
-        <option value="Jérôme">Jérôme Vinière</option>
-        <option value="Alain">Alain Faucher</option>
-    </select>
+<form>
+    <label><input type="radio" name="personne" value="Sébastien">Sébastien Philippon</label><br>
+    <label><input type="radio" name="personne" value="Pierre">Pierre Renaud</label><br>
+    <label><input type="radio" name="personne" value="Jérôme"> Jérôme Vinière</label><br>
+    <label><input type="radio" name="personne" value="Alain"> Alain Faucher</label><br>
+    <label><input type="radio" name="personne" value="Personne"> Vous ne connaissez personne</label><br>
+</form>
     
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
     
