@@ -86,6 +86,7 @@
         }
 
         input[type="radio"] {
+            margin-left: 10px
             appearance: none;
             width: 20px;
             height: 20px;
@@ -99,7 +100,7 @@
         input[type="radio"]:checked {
             background-color: rgb(200, 0, 0); /* Couleur lorsque sélectionné */
             border: 5px solid white; /* Cercle intérieur blanc */
-            box-shadow: 0 0 0 1px rgb(200, 0, 0); /* Ajoute une bordure externe */
+            box-shadow: 0 0 0 2px rgb(200, 0, 0); /* Ajoute une bordure externe */
         }
         
         .button {
@@ -203,12 +204,13 @@
     <label class="label" for="coordonnees"> Vos coordonnées :<br>
                                             <span class="subLabel">(téléphone / mail / les deux)</span></label>
     <input type="text" id="coordonnees" class="input">
+    <label class="label" for="livreur">Quelle personne avez vous l'habitude de voir ?</label>
 <form>
-    <label><input type="radio" name="personne" value="Sébastien">Sébastien Philippon</label><br>
-    <label><input type="radio" name="personne" value="Pierre">Pierre Renaud</label><br>
-    <label><input type="radio" name="personne" value="Jérôme"> Jérôme Vinière</label><br>
-    <label><input type="radio" name="personne" value="Alain"> Alain Faucher</label><br>
-    <label><input type="radio" name="personne" value="Personne"> Vous ne connaissez personne</label><br>
+    <label><input type="radio" name="livreur" value="Sébastien">Sébastien Philippon</label><br>
+    <label><input type="radio" name="livreur" value="Pierre">Pierre Renaud</label><br>
+    <label><input type="radio" name="livreur" value="Jérôme"> Jérôme Vinière</label><br>
+    <label><input type="radio" name="livreur" value="Alain"> Alain Faucher</label><br>
+    <label><input type="radio" name="livreur" value="Personne"> Vous ne connaissez personne</label><br>
 </form>
     
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
