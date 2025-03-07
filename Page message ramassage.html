@@ -146,6 +146,8 @@
             cursor: not-allowed;
         }
         .livreur{
+            display: inline-block;
+            vertical-align: middle;
             margin-left: 10px;
         }
 
@@ -209,11 +211,11 @@
     <input type="text" id="coordonnees" class="input">
     <label class="label" for="livreur">Qui avez-vous l'habitude de voir ?</label>
 <form>
-    <label><input type="radio" name="livreur" class="livreur" value="Sébastien">Sébastien Philippon</label><br>
-    <label><input type="radio" name="livreur" class="livreur" value="Pierre">Pierre Renaud</label><br>
-    <label><input type="radio" name="livreur" class="livreur" value="Jérôme"> Jérôme Vinière</label><br>
-    <label><input type="radio" name="livreur" class="livreur" value="Alain"> Alain Faucher</label><br>
-    <label><input type="radio" name="livreur" class="livreur" value="Personne"> Vous ne connaissez personne</label><br>
+    <label><span class="livreur"><input type="radio" name="livreur" value="Sébastien">Sébastien Philippon</span></label><br>
+    <label><span class="livreur"><input type="radio" name="livreur" value="Pierre">Pierre Renaud</span></label><br>
+    <label><span class="livreur"><input type="radio" name="livreur" value="Jérôme"> Jérôme Vinière</span></label><br>
+    <label><span class="livreur"><input type="radio" name="livreur" value="Alain"> Alain Faucher</span></label><br>
+    <label><span class="livreur"><input type="radio" name="livreur" value="Personne"> Vous ne connaissez personne</span></label><br>
 </form>
     
     <button id="sendButton" class="button attention" onclick="sendSMS()"></button>
