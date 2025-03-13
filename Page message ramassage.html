@@ -266,9 +266,10 @@
             let phone = localStorage.getItem('contactPhone');
 
         if (entreprise && nom && coordonnees) {
-            let message = `<span class="bold-text">Entreprise :</span> ${entreprise}<br>
-                        <span class="bold-text">Demandeur :</span> ${nom}<br>
-                        <span class="bold-text">Contact habituel :</span> ${contact}<br>`;
+            let message = `
+                <p><strong>Entreprise :</strong> ${entreprise}</p>
+                <p><strong>Demandeur :</strong> ${nom}</p>
+                <p><strong>Contact habituel :</strong> ${contact}</p>`;
 
         sendButton.innerText = "Envoi en cours...";
         sendButton.disabled = true;
