@@ -265,9 +265,9 @@
             let contact = document.querySelector('input[name="livreur"]:checked').value;
             let phone = localStorage.getItem('contactPhone');
 
-        if (entreprise && nom && coordonnees) {
-            let message = `Entreprise : ${entreprise}\n
-                        Demandeur : ${nom}\n
+        if (entreprise && nom && coordonnees && contact) {
+            let message = `Entreprise : ${entreprise}\n +
+                        Demandeur : ${nom}\n +
                         Contact habituel : ${contact}\n`;
 
         sendButton.innerText = "Envoi en cours...";
