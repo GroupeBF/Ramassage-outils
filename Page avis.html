@@ -247,6 +247,7 @@
 
     async function loadProducts() {
       const url = `https://docs.google.com/spreadsheets/d/1YTxftitTFaecPUNQrmUms6t2hD2wY0vYuIDqyNV9d0Y/gviz/tq?tqx=out:json`;
+      recordUserActivity("Consulter la page d'avis", entreprise, nom, coordonnees);
 
       try {
         const response = await fetch(url);
@@ -407,7 +408,6 @@
     document.addEventListener("DOMContentLoaded", () => {
       loadProducts();
       document.body.style.opacity = 1;
-      recordUserActivity("Consulter la page d'avis", entreprise, nom, coordonnees);
     });
   </script>
 
