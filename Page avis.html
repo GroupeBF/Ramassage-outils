@@ -246,9 +246,9 @@
 
     async function loadProducts() {
       const url = `https://docs.google.com/spreadsheets/d/1YTxftitTFaecPUNQrmUms6t2hD2wY0vYuIDqyNV9d0Y/gviz/tq?tqx=out:json`;
-      let entreprise = document.getElementById("entreprise").value;
-      let nom = document.getElementById("nom").value;
-      let coordonnees = document.getElementById("coordonnees").value;
+      let entreprise = localStorage.getItem('entreprise') || "";
+      let nom = localStorage.getItem('nom') || "";
+      let coordonnees = localStorage.getItem('coordonnees') || "";
       recordUserActivity("Consulter la page d'avis", entreprise, nom, coordonnees);
       
       try {
