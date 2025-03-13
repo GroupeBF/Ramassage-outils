@@ -262,7 +262,7 @@
             let entreprise = document.getElementById('entreprise').value;
             let nom = document.getElementById('nom').value;
             let coordonnees = document.getElementById('coordonnees').value;
-            let contact = document.getElementById('livreur').value;
+            let contact = document.querySelector('input[name="livreur"]:checked');
             let phone = localStorage.getItem('contactPhone');
 
         if (entreprise && nom && coordonnees) {
