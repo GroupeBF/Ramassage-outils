@@ -262,13 +262,13 @@
             let entreprise = document.getElementById('entreprise').value;
             let nom = document.getElementById('nom').value;
             let coordonnees = document.getElementById('coordonnees').value;
-            let contact = localStorage.getItem('contactName');
+            let contact = document.getElementById('livreur').value;
             let phone = localStorage.getItem('contactPhone');
 
         if (entreprise && nom && coordonnees) {
-        let message = `Bonjour ${contact},\n\nNous aurions besoin d’un ramassage d’outils chez ${entreprise}.\n\n` +
-                      `Pourriez-vous me confirmer la réception de ce message et le jour où vous pourrez passer ?\n\n` +
-                      `Bien cordialement,\n${nom}`;
+        let message = `Entreprise : ${entreprise}.\n` +
+                      `Demandeur : ${nom}\n\n` +
+                      `Contact habituel : ${contact}\n`;
 
         sendButton.innerText = "Envoi en cours...";
         sendButton.disabled = true;
@@ -276,7 +276,7 @@
         sendButton.classList.add("validation"); 
         sendButton.classList.add("no-hover"); 
             
-        fetch('https://ramassage-outils-production.up.railway.app/send-email', {  // Remplacez par l'URL de votre serveur
+        fetch('https://ramassage-outils-production.up.railway.app/send-email', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
