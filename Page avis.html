@@ -407,6 +407,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       loadProducts();
       document.body.style.opacity = 1;
+      recordUserActivity("Consulter la page d'avis", entreprise, nom, coordonnees);
     });
   </script>
 
