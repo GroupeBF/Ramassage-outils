@@ -252,6 +252,7 @@
             document.getElementById('nom').value = nom;
             document.getElementById('coordonnees').value = coordonnees;
             document.getElementById('sendButton').innerText = `Envoyer votre demande de ramassage d'outils`;
+            recordUserActivity("Conusulter la page de ramassage", entreprise, nom, coordonnees);
             
                
             
